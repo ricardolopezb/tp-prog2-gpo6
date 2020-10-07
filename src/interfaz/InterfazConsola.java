@@ -15,6 +15,7 @@ public class InterfazConsola {
                 clearScreen();
                 System.out.println("Ingrese su CUIL");
                 String cuil_ingresado = Scanner.getString("--> ");
+
                 break;
 
             case 2:
@@ -39,11 +40,29 @@ public class InterfazConsola {
 
     public static void printAdminMenu(){
         System.out.println("********** TraceIt **********\n");
+        System.out.println("1. Manejar Ciudadanos");
+        System.out.println("2. Notificaciones");
+        System.out.println("3. Manejar Eventos");
+        System.out.println("4. Buscar Ciudadanos");
+        System.out.println("5. Ver Mapa de Brotes");
+        System.out.println("\n9. Regresar");
+
+        /*switch(Scanner.getInt("--> ")){
+            case 1:
+                printAdminSubManejar();
+                break;
+            case 2:
+                printAdminSubNotif();
+                break;
+            case 3: printAdminSub*/
+
+        }
 
 
 
 
-    }
+
+
 
 
 

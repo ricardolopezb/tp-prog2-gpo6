@@ -19,11 +19,9 @@ public class Admin {
 
 
     public void agregarCiudadano(){
-        System.out.println("Ingrese su CUIL");
-        String CUIL = Scanner.getString("--> ");
+        String CUIL = MetodosAuxiliares.pedirCUIL();
         System.out.println();
-        System.out.println("Ingrese su Celular");
-        String celular = Scanner.getString("--> ");
+        String celular = MetodosAuxiliares.pedirCel();
 
         if(Check.checkAnses(CUIL, celular)){ //esta hardcodeado en true, arreglalo
             //(donde se guardan los datos/Base de datos local).add(new Ciudadano(CUIL, celular))

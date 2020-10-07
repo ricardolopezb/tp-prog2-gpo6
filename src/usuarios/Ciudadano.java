@@ -8,6 +8,7 @@ public class Ciudadano {
     Encuentro posterior;
     ArrayList<Eventos> sintomas;
     final String zona;*/
+    int solicitudesRechazadas;
 
     public Ciudadano(String CUIL, String celular) {
         this.CUIL = CUIL;
