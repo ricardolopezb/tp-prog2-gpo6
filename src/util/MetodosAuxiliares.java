@@ -2,6 +2,9 @@ package util;
 
 import interfaz.InterfazConsola;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+
 public class MetodosAuxiliares {
 
     public static void delay(int millis){
@@ -42,7 +45,21 @@ public class MetodosAuxiliares {
         return "";
     }
 
+    public static void main(String[] args) {
+       try(BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\Ricardo\\Desktop\\Libro1.txt"))){
+           String line = br.readLine();
+           String[] partes = line.split("\t");
+           for (String p: partes) {
+               System.out.println(p);
 
+           }
+
+       } catch (Exception e){
+
+       }
+
+        ;
+    }
 
 
 
