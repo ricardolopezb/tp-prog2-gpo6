@@ -4,10 +4,10 @@ public class Ciudadano {
     boolean bloqueado;
     final String CUIL;
     final String celular;
-    Encuentro anterior;
+    /*Encuentro anterior;
     Encuentro posterior;
     ArrayList<Eventos> sintomas;
-    final String zona;
+    final String zona;*/
 
     public Ciudadano(String CUIL, String celular) {
         this.CUIL = CUIL;
