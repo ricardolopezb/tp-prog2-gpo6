@@ -25,6 +25,7 @@ public class Admin {
 
         if(Check.checkAnses(CUIL, celular)){ //esta hardcodeado en true, arreglalo
             //(donde se guardan los datos/Base de datos local).add(new Ciudadano(CUIL, celular))
+            System.out.println("Registro(con tilde) bien :)");
         } else{
             System.out.println("Datos Invalidos");
             MetodosAuxiliares.delay(3000);
@@ -34,7 +35,6 @@ public class Admin {
 
 
     }
-
 
 
 
@@ -69,7 +69,15 @@ public class Admin {
         //A implementar
     }*/
 
+    private void registrarCiudadano(){
+        //Este metodo registra a los ciudadanos en nuestra base de datos.
 
+
+
+
+
+
+    }
 
 
 }

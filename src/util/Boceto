@@ -42,11 +42,18 @@ Recibir notificación de síntomas en su contacto que tenga 2 síntomas
 Evento(síntoma)
 	Atributos:
 Nombre del síntoma
+Relaciones
+
 
 Monitor?
 
+
+
+
+
+
 Encuentro
-Ciudadano 1
+Ciudadano 1     // 2002049954,1924894392,100920,250920
 Ciudadano 2
 Fecha de fin
 Fecha de inicio
