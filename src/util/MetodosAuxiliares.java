@@ -47,14 +47,17 @@ public class MetodosAuxiliares {
 
     public static void main(String[] args) {
        try(BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\Ricardo\\Desktop\\Libro1.txt"))){
+
            String line = br.readLine();
-           String[] partes = line.split("\t");
-           for (String p: partes) {
-               System.out.println(p);
-
+           while(line != null){
+               String[] partes = line.split("\t");
+               for (String p : partes) {
+                   System.out.println(p);
+               }
+               line = br.readLine();
            }
-
        } catch (Exception e){
+           System.out.println(e.getMessage());
 
        }
 
