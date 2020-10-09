@@ -15,12 +15,22 @@ public class Fecha {
 
         switch(this.month){
             //meses con 31
-            case 1,4,5,7,8,10,12:
+            case 1,4,5,7,8,10:
                 if(day == 30){
                     return new Fecha(1, this.month+1, this.year);
                 }
                 else if(day == 31){
                     return new Fecha(2, this.month+1, this.year);
+                }
+                else{
+                    return new Fecha(this.day+1, this.month, this.year);
+                }
+            case 12:
+                if(day == 30){
+                    return new Fecha(1, 1, this.year+1);
+                }
+                else if(day == 31){
+                    return new Fecha(2, 1, this.year+1);
                 }
                 else{
                     return new Fecha(this.day+1, this.month, this.year);
