@@ -56,7 +56,7 @@ public class Ciudadano {
         //Un metodo que printea los datos de un ciudadano en especifico. Para que lo use el admin en el metodo para obtener info.
     }
 
-    public String toString(){
+    /*public String toString(){
         String strSintomas = "";
         String anteriorStr;
         String posteriorStr;
@@ -87,7 +87,7 @@ public class Ciudadano {
 
         return display;
 
-    }
+    }*/
 
     public String getCUIL(){
         return this.CUIL;

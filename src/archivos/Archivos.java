@@ -36,50 +36,63 @@ public class Archivos {
         String encuentro1NoSplit = tabSplit[6];
         String encuentro2NoSplit = tabSplit[7];
 
-        String[] sintomasSplit = sintomasNoSplit.split(",");
-        ArrayList<Evento> sintomas = new ArrayList<>();
-        for (String s: sintomasSplit) {
-            sintomas.add(new Evento(s));
-        }
-        String[] encuentro1Split = encuentro1NoSplit.split(",");
-        String[] fch1 = encuentro1Split[2].split("-");
-        int[]f1 = new int[3];;
-        for (int i = 0; i < fch1.length ; i++) {
-            f1[i] = Integer.parseInt(fch1[i]);
-        }
-        Fecha fecha1 = new Fecha(f1[0], f1[1], f1[2]);
+        ArrayList<Evento> sintomas;
+        Encuentro e1;
+        Encuentro e2;
 
-
-        String[] fch2 = encuentro1Split[3].split("-");
-        int[]f2 = new int[3];
-        for (int i = 0; i < fch2.length ; i++) {
-            f2[i] = Integer.parseInt(fch2[i]);
+        if(sintomasNoSplit.equals("null")){
+            sintomas = null;
+        } else{
+            sintomas = new ArrayList<>();
+            String[] sintomasSplit = sintomasNoSplit.split(",");
+            for (String s: sintomasSplit) {
+                sintomas.add(new Evento(s));
+            }
         }
 
-        Fecha fecha2 = new Fecha(f2[0], f2[1], f2[2]);
-        Encuentro e1 = new Encuentro(encuentro1Split[0], encuentro1Split[1], fecha1, fecha2);
+        if(encuentro1NoSplit.equals("null")){
+            e1 = null;
+        } else{
+            String[] encuentro1Split = encuentro1NoSplit.split(",");
+            String[] fch1 = encuentro1Split[2].split("-");
+            int[]f1 = new int[3];;
+            for (int i = 0; i < fch1.length ; i++) {
+                f1[i] = Integer.parseInt(fch1[i]);
+            }
+            Fecha fecha1 = new Fecha(f1[0], f1[1], f1[2]);
 
 
+            String[] fch2 = encuentro1Split[3].split("-");
+            int[]f2 = new int[3];
+            for (int i = 0; i < fch2.length ; i++) {
+                f2[i] = Integer.parseInt(fch2[i]);
+            }
 
+            Fecha fecha2 = new Fecha(f2[0], f2[1], f2[2]);
+            e1 = new Encuentro(encuentro1Split[0], encuentro1Split[1], fecha1, fecha2);
 
-
-        String[] encuentro2Split = encuentro2NoSplit.split(",");
-        String[] fch3 = encuentro2Split[2].split("-");
-        int[]f3 = new int[3];;
-        for (int i = 0; i < fch3.length ; i++) {
-            f3[i] = Integer.parseInt(fch3[i]);
         }
-        Fecha fecha3 = new Fecha(f3[0], f3[1], f3[2]);
+        if(encuentro2NoSplit.equals("null")){
+            e2 = null;
+        } else{
+            String[] encuentro2Split = encuentro2NoSplit.split(",");
+            String[] fch3 = encuentro2Split[2].split("-");
+            int[]f3 = new int[3];;
+            for (int i = 0; i < fch3.length ; i++) {
+                f3[i] = Integer.parseInt(fch3[i]);
+            }
+            Fecha fecha3 = new Fecha(f3[0], f3[1], f3[2]);
 
 
-        String[] fch4 = encuentro2Split[3].split("-");
-        int[]f4 = new int[3];
-        for (int i = 0; i < fch4.length ; i++) {
-            f4[i] = Integer.parseInt(fch4[i]);
+            String[] fch4 = encuentro2Split[3].split("-");
+            int[]f4 = new int[3];
+            for (int i = 0; i < fch4.length ; i++) {
+                f4[i] = Integer.parseInt(fch4[i]);
+            }
+
+            Fecha fecha4 = new Fecha(f4[0], f4[1], f4[2]);
+            e2 = new Encuentro(encuentro2Split[0], encuentro2Split[1], fecha3, fecha4);
         }
-
-        Fecha fecha4 = new Fecha(f4[0], f4[1], f4[2]);
-        Encuentro e2 = new Encuentro(encuentro2Split[0], encuentro2Split[1], fecha3, fecha4);
 
         return new Ciudadano(cuil, celular, block, zona, rechazos, sintomas, e1, e2);
 

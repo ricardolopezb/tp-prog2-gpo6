@@ -26,7 +26,6 @@ public class Admin {
 
         if(Check.checkAnses(CUIL, celular)){
             Archivos.addToLocal(new Ciudadano(CUIL, celular));
-            System.out.println("Registro(con tilde) bien :)");
         } else{
             System.out.println("Datos Invalidos");
             MetodosAuxiliares.delay(3000);
