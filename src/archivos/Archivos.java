@@ -20,6 +20,30 @@ public class Archivos {
         }
 
     }
+    public static void removeLocal(Ciudadano c){
+        String toRemove = c.toString();
+        try{
+            BufferedReader reader = new BufferedReader(new FileReader("src\\archivos\\BaseLocal.txt"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("src\\archivos\\BaseLocal.txt"));
+
+            String currentLine;
+
+            while((currentLine = reader.readLine()) != null) {
+                if(currentLine.trim().equals(toRemove)){
+                    writer.write("");
+                    break;
+                }
+
+            }
+
+            writer.close();
+            reader.close();
+
+        } catch(IOException e){
+            e.getMessage();
+        }
+
+    }
 
     public static Ciudadano decode(String info){
         //CUIL\t Celular\t Bloqueado\t Zona\t Rechazos\t Sintoma1,Sintoma2,Sintoma3\t    (2002049954(CUIL CIUD 1),1924894392(CUIL CIUD 2),100920(Fecha de Inicio en numero)
@@ -107,6 +131,26 @@ public class Archivos {
             while(line != null){
                 String[] x = line.split("\t");
                 if(CUIL.equals(x[0])){
+                    return decode(line);
+                }
+                line = br.readLine();
+            }
+
+
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static Ciudadano searchCelular(String cel){
+        try(BufferedReader br = new BufferedReader(new FileReader("src\\archivos\\BaseLocal.txt"));){
+            String line = br.readLine();
+            while(line != null){
+                String[] x = line.split("\t");
+                if(cel.equals(x[1])){
                     return decode(line);
                 }
                 line = br.readLine();

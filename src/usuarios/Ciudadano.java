@@ -56,7 +56,7 @@ public class Ciudadano {
         //Un metodo que printea los datos de un ciudadano en especifico. Para que lo use el admin en el metodo para obtener info.
     }
 
-    /*public String toString(){
+    public String toString(){
         String strSintomas = "";
         String anteriorStr;
         String posteriorStr;
@@ -68,7 +68,6 @@ public class Ciudadano {
         } catch (NullPointerException e){
             strSintomas = "null";
         }
-
         //(2002049954(CUIL CIUD 1),1924894392(CUIL CIUD 2),100920(Fecha de Inicio en numero),250920(fecha de fin en numero)
         try{
             anteriorStr = anterior.toString();
@@ -81,13 +80,11 @@ public class Ciudadano {
             posteriorStr = "null";
         }
 
-
         String display = CUIL +"\t"+ celular +"\t"+ bloqueado +"\t"+ zona +"\t"+ solicitudesRechazadas +"\t"+ strSintomas +"\t" + anteriorStr +"\t" + posteriorStr;
-
 
         return display;
 
-    }*/
+    }
 
     public String getCUIL(){
         return this.CUIL;

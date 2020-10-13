@@ -82,6 +82,12 @@ public class InterfazConsola {
 
                 //Ciudadano c = mostrarBloqueados();
                 //admin.desbloquear(c);
+            case 2:
+                admin.agregarCiudadano();
+                break;
+            case 3:
+                admin.eliminarCiudadano();
+                break;
         }
 
 
@@ -135,9 +141,10 @@ public class InterfazConsola {
     }
 
     public static void clearScreen(){
-        try{
-            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-        } catch(Exception E){System.out.println(E.getMessage());}
+        for (int i = 0; i < 30 ; i++) {
+            System.out.println();
+
+        }
     }
 
 
