@@ -1,5 +1,6 @@
 package usuarios;
 
+import archivos.Archivos;
 import interfaz.InterfazConsola;
 import util.Check;
 import util.MetodosAuxiliares;
@@ -23,8 +24,8 @@ public class Admin {
         System.out.println();
         String celular = MetodosAuxiliares.pedirCel();
 
-        if(Check.checkAnses(CUIL, celular)){ //esta hardcodeado en true, arreglalo
-            //(donde se guardan los datos/Base de datos local).add(new Ciudadano(CUIL, celular))
+        if(Check.checkAnses(CUIL, celular)){
+            Archivos.addToLocal(new Ciudadano(CUIL, celular));
             System.out.println("Registro(con tilde) bien :)");
         } else{
             System.out.println("Datos Invalidos");

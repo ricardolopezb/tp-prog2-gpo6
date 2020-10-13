@@ -1,5 +1,6 @@
 package entidades;
 
+import archivos.Archivos;
 import usuarios.Ciudadano;
 
 public class Encuentro {
@@ -10,9 +11,9 @@ public class Encuentro {
     Fecha fechaFin;
     Fecha finDeEfecto;
 
-    public Encuentro(Ciudadano ciud1, Ciudadano ciud2, Fecha fechaInicio, Fecha fechaFin) {
-        this.ciud1 = ciud1;
-        this.ciud2 = ciud2;
+    public Encuentro(String cuil1, String cuil2, Fecha fechaInicio, Fecha fechaFin) {
+        this.ciud1 = Archivos.searchCUIL(cuil1);
+        this.ciud2 = Archivos.searchCUIL(cuil2);
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         finDeEfecto = fechaFin.add48hs();

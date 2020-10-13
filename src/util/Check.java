@@ -34,7 +34,7 @@ public class Check {
 
     public static boolean checkAnses(String CUIL, String celular){ //este metodo se usa solo en el registro
         try{
-            BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\Ricardo\\Desktop\\Programas\\Austral\\tp-prog2-gpo6\\src\\archivos\\BaseAnses.txt"));
+            BufferedReader br = new BufferedReader(new FileReader("src\\archivos\\BaseAnses.txt"));
             String line = br.readLine();
             while(line != null){
                 String[] x = line.split("\t");
