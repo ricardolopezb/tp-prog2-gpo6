@@ -20,6 +20,7 @@ public class Archivos {
         }
 
     }
+
     public static void removeLocal(Ciudadano c){
         String toRemove = c.toString();
         try{
@@ -28,16 +29,17 @@ public class Archivos {
 
             String currentLine;
 
-            while((currentLine = reader.readLine()) != null) {
+            while(null != (currentLine = reader.readLine())) {
                 if(currentLine.trim().equals(toRemove)){
                     writer.write("");
+                    writer.close();
+                    reader.close();
                     break;
                 }
 
             }
 
-            writer.close();
-            reader.close();
+
 
         } catch(IOException e){
             e.getMessage();

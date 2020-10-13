@@ -33,6 +33,7 @@ public class MetodosAuxiliares {
         }
         return "";
     }
+
     public static Fecha pedirFecha(){
         System.out.println("Ingrese la fecha:\n");
         int day = Scanner.getInt("Dia --> ");
@@ -59,11 +60,6 @@ public class MetodosAuxiliares {
 
         return new Fecha(day, month, newYear);
     }
-
-
-
-
-
 
     public static String pedirCel() {
         System.out.println("Ingrese el Celular");

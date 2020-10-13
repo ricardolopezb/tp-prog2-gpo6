@@ -25,6 +25,7 @@ public class Admin {
 
         if (Check.checkAnses(CUIL, celular)) {
             Archivos.addToLocal(new Ciudadano(CUIL, celular));
+            System.out.println("Ciudadano registrado con exito.");
         } else {
             System.out.println("Datos Invalidos");
             MetodosAuxiliares.delay(3000);

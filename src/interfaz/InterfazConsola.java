@@ -15,25 +15,25 @@ public class InterfazConsola {
 
         switch (printInicio()) {
             case 1:
-                clearScreen();
+                //clearScreen();
                 System.out.println("Ingrese su CUIL");
                 String cuil_ingresado = Scanner.getString("--> ");
                 printLogeoExistoso();
                 break;
 
             case 2:
-                clearScreen();
+                //clearScreen();
                 System.out.println("Ingrese su Celular");
                 String cel_ingresado = Scanner.getString("--> ");
                 printLogeoExistoso();
                 break;
             case 3:
-                clearScreen();
+                //clearScreen();
                 admin.agregarCiudadano();
                 break;
 
             case 9:
-                clearScreen();
+                //clearScreen();
                 printPassAdmin();
                 break;
 
@@ -59,7 +59,7 @@ public class InterfazConsola {
         System.out.println("********** TraceIt **********");
         System.out.println("Bienvenido\n");
         System.out.println("1. Síntomas");
-        System.out.println("2. Reportar contacto cercano");
+        System.out.println("2. Reportar contacto cercano (a implementar)");
         System.out.println("3. Notificaciones");
 
         switch (Scanner.getInt("--> ")) {
@@ -81,8 +81,8 @@ public class InterfazConsola {
 
     private static void printSintoma() {
         System.out.println("********** TraceIt **********\n");
-        System.out.println("1. Reportar de sintoma");
-        System.out.println("2. Bajar sintoma"); //chekeado que se dice asi ? xdxd
+        System.out.println("1. Reportar sintoma (a implementar)");
+        System.out.println("2. Bajar sintoma (a implementar)"); //chekeado que se dice asi ? xdxd
         System.out.println("0. Regresar");
 
         switch (Scanner.getInt("--> ")){
@@ -122,9 +122,9 @@ public class InterfazConsola {
          */
         System.out.println("********** TraceIt **********\n");
         System.out.println("Desea ver notificaciones de:");
-        System.out.println("    1. Brotes");
-        System.out.println("    2. Contactos recibidos");
-        System.out.println("    3. Contactos realizados");// estan chekeados esos nombes?
+        System.out.println("    1. Brotes (a implementar)");
+        System.out.println("    2. Contactos recibidos (a implementar)");
+        System.out.println("    3. Contactos realizados (a implementar)");// estan chekeados esos nombes?
         System.out.println("    0. Regresar");
 
         switch (Scanner.getInt("--> ")) {
@@ -165,8 +165,8 @@ public class InterfazConsola {
         System.out.println("1. Manejar Ciudadanos");
         System.out.println("2. Notificaciones");
         System.out.println("3. Manejar Eventos");
-        System.out.println("4. Buscar Ciudadanos");
-        System.out.println("5. Ver Mapa de Brotes");
+        System.out.println("4. Buscar Ciudadanos (a implementar)");
+        System.out.println("5. Ver Mapa de Brotes (a implementar)");
 
         switch(Scanner.getInt("--> ")){
             case 1:
@@ -196,7 +196,7 @@ public class InterfazConsola {
     public static void printAdminSubManejar() {
         //bloquear / desbloquear / agregar / eliminar
         System.out.println("********** TraceIt **********\n");
-        System.out.println("1. Desbloquear Ciudadanos");
+        System.out.println("1. Desbloquear Ciudadanos (a implementar)");
         System.out.println("2. Agregar Ciudadanos");
         System.out.println("3. Eliminar Ciudadanos");
         System.out.println("\n0. Regresar");
@@ -229,8 +229,8 @@ public class InterfazConsola {
     public static void printAdminSubNotif() {
         //brotes / usuarios bloqueados
         System.out.println("********** TraceIt **********\n");
-        System.out.println("1. Notificaciones de brote por zona");
-        System.out.println("2. Notificaciones de ciudadanos bloqueados");
+        System.out.println("1. Notificaciones de brote por zona (a implementar)");
+        System.out.println("2. Notificaciones de ciudadanos bloqueados (a implementar)");
         System.out.println("\n0. Regresar");
 
         switch (Scanner.getInt("--> ")){
@@ -262,10 +262,10 @@ public class InterfazConsola {
         //manejo de eventos
         System.out.println("********** TraceIt **********\n");
         System.out.println("Manejo de eventos");
-        System.out.println("1. Generar evento");
-        System.out.println("2. Eliminiar evento");
-        System.out.println("3. Ver eventos existentes");
-        System.out.println("4. Ver top de eventos por zona");
+        System.out.println("1. Generar evento (a implementar)");
+        System.out.println("2. Eliminiar evento (a implementar)");
+        System.out.println("3. Ver eventos existentes (a implementar)");
+        System.out.println("4. Ver top de eventos por zona (a implementar)");
         System.out.println("\n0. Regresar");
 
         switch (Scanner.getInt("--> "))   {

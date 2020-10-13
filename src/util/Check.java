@@ -18,7 +18,6 @@ public class Check {
         return checkNumero(celular, 10);
     }
 
-
     private static boolean checkNumero(String numero, int digitos){
         //lo mismo que arriba. un numero de tlf tiene 10 digitos
         if (numero == null || numero.length() != digitos) {
@@ -53,8 +52,6 @@ public class Check {
         return false;
         //un metodo para chequear que el cuil y el numero esten en el .txt y que esten juntos.
     }
-
-    // metodo que chequea el log in en la base nuestra
 
     public static boolean checkPassAdmin(String pass){
         try{
