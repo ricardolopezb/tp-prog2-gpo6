@@ -2,6 +2,8 @@ package interfaz;
 
 import usuarios.Admin;
 import usuarios.Ciudadano;
+import util.Check;
+import util.MetodosAuxiliares;
 import util.Scanner;
 
 public class InterfazConsola {
@@ -11,18 +13,19 @@ public class InterfazConsola {
         System.out.println("********** TraceIt **********\n");
         //int eleccion1 = printInicio();
 
-        switch(printInicio()){
+        switch (printInicio()) {
             case 1:
                 clearScreen();
                 System.out.println("Ingrese su CUIL");
                 String cuil_ingresado = Scanner.getString("--> ");
-
+                printLogeoExistoso();
                 break;
 
             case 2:
                 clearScreen();
                 System.out.println("Ingrese su Celular");
                 String cel_ingresado = Scanner.getString("--> ");
+                printLogeoExistoso();
                 break;
             case 3:
                 clearScreen();
@@ -31,14 +34,132 @@ public class InterfazConsola {
 
             case 9:
                 clearScreen();
-                printAdminMenu();
+                printPassAdmin();
+                break;
+
 
         }
 
 
-
     }
 
+    private static void printPassAdmin() {
+        String pass = Scanner.getString("Ingrese su contraseña: ");
+        if(Check.checkPassAdmin(pass) ){
+            printAdminMenu();
+        }else {
+            System.out.println("Datos invalidos");
+            MetodosAuxiliares.delay(1500);
+            printPassAdmin();
+        }
+    }
+
+    //*************************** entrada del case 1 y 2 **************************************************//
+    private static void printLogeoExistoso() { //para ingreso por CUIL o celular
+        System.out.println("********** TraceIt **********");
+        System.out.println("Bienvenido\n");
+        System.out.println("1. Síntomas");
+        System.out.println("2. Reportar contacto cercano");
+        System.out.println("3. Notificaciones");
+
+        switch (Scanner.getInt("--> ")) {
+            case 1:
+                printSintoma();
+                break;
+            case 2:
+                printReporteContacto();
+                break;
+            case 3:
+                printNotificaciones();
+                break;
+            default:
+                printLogeoExistoso();
+                break;
+        }
+    }
+
+
+    private static void printSintoma() {
+        System.out.println("********** TraceIt **********\n");
+        System.out.println("1. Reportar de sintoma");
+        System.out.println("2. Bajar sintoma"); //chekeado que se dice asi ? xdxd
+        System.out.println("0. Regresar");
+
+        switch (Scanner.getInt("--> ")){
+            case 0:
+                printLogeoExistoso();
+                break;
+            case 1:
+                darAltaSintoma();
+                break;
+            case 2:
+                darBajaSintoma();
+                break;
+            default:
+                printSintoma();
+                break;
+        }
+    }
+    private static void darAltaSintoma() {
+        //a implementar
+    }
+    private static void darBajaSintoma(){
+        //a implementar
+    }
+
+
+    private static void printReporteContacto() {
+        //reportar contacto con otro ciudadano
+    }
+
+
+
+    private static void printNotificaciones() {
+        /*
+            notif de brote
+            hubo contacto con persona de 2 sintomas
+            tuvo contacto con x persona? si / no
+         */
+        System.out.println("********** TraceIt **********\n");
+        System.out.println("Desea ver notificaciones de:");
+        System.out.println("    1. Brotes");
+        System.out.println("    2. Contactos recibidos");
+        System.out.println("    3. Contactos realizados");// estan chekeados esos nombes?
+        System.out.println("    0. Regresar");
+
+        switch (Scanner.getInt("--> ")) {
+            case 0:
+                printLogeoExistoso();
+                break;
+            case 1:
+                printBrotes();
+                break;
+            case 2:
+                printContactoRecibidos();
+                break;
+            case 3:
+                printContactoRealizado();
+                break;
+            default:
+                printNotificaciones();
+                break;
+        }
+    }
+    private static void printBrotes(){
+        //brote en zona concurrida
+    }
+    private static void printContactoRecibidos(){
+        // recibe la confirmacion de contacto con otro ciudadano, por si o no
+
+    }
+    private static void printContactoRealizado() {
+        // ingrersa que tuvo contacto con otro ciudadano en x zona
+        // el otro ciudadano la recibe por printContactoRecibido()
+    }
+
+//******************************* cierre entrada 1 y 2 ******************************************//
+
+//******************************* menu del administrador ****************************************//
     public static void printAdminMenu(){
         System.out.println("********** TraceIt **********\n");
         System.out.println("1. Manejar Ciudadanos");
@@ -46,7 +167,6 @@ public class InterfazConsola {
         System.out.println("3. Manejar Eventos");
         System.out.println("4. Buscar Ciudadanos");
         System.out.println("5. Ver Mapa de Brotes");
-        System.out.println("\n9. Regresar");
 
         switch(Scanner.getInt("--> ")){
             case 1:
@@ -65,9 +185,13 @@ public class InterfazConsola {
                 printAdminMapa();
                 break;
 
+            default:
+                printAdminMenu();
+                break;
         }
 
     }
+
 
     public static void printAdminSubManejar() {
         //bloquear / desbloquear / agregar / eliminar
@@ -75,11 +199,16 @@ public class InterfazConsola {
         System.out.println("1. Desbloquear Ciudadanos");
         System.out.println("2. Agregar Ciudadanos");
         System.out.println("3. Eliminar Ciudadanos");
-        System.out.println("\n9. Regresar");
-        Admin admin = new Admin();
-        switch(Scanner.getInt("--> ")){
-            case 1:
+        System.out.println("\n0. Regresar");
 
+        Admin admin = new Admin();
+
+        switch(Scanner.getInt("--> ")){
+            case 0:
+                printAdminMenu();
+                break;
+            case 1:
+                //en admin, borra ;(
                 //Ciudadano c = mostrarBloqueados();
                 //admin.desbloquear(c);
             case 2:
@@ -88,46 +217,103 @@ public class InterfazConsola {
             case 3:
                 admin.eliminarCiudadano();
                 break;
+            default:
+                printAdminSubManejar();
+                break;
         }
 
 
     }
 
+
     public static void printAdminSubNotif() {
         //brotes / usuarios bloqueados
+        System.out.println("********** TraceIt **********\n");
+        System.out.println("1. Notificaciones de brote por zona");
+        System.out.println("2. Notificaciones de ciudadanos bloqueados");
+        System.out.println("\n0. Regresar");
+
+        switch (Scanner.getInt("--> ")){
+            case 0:
+                printAdminMenu();
+                break;
+            case 1:
+                printNotifBrotes();
+                break;
+            case 2:
+                printCiudadanosBloqueados();
+                break;
+            default:
+                printAdminSubNotif();
+                break;
+
+        }
     }
+    private static void printNotifBrotes() {
+        //donde hay brotes segun la relacion con los sintomas
+    }
+    private static void printCiudadanosBloqueados() {
+        //cuantos y quienes son los usuarios bloqueados
+    }
+
 
     public static void printAdminSubEvents() {
         //crear / eliminar / ver E / top 3 eventos por zona
+        //manejo de eventos
+        System.out.println("********** TraceIt **********\n");
+        System.out.println("Manejo de eventos");
+        System.out.println("1. Generar evento");
+        System.out.println("2. Eliminiar evento");
+        System.out.println("3. Ver eventos existentes");
+        System.out.println("4. Ver top de eventos por zona");
+        System.out.println("\n0. Regresar");
+
+        switch (Scanner.getInt("--> "))   {
+            case 0:
+                printAdminMenu();
+                break;
+            case 1:
+                printGenerateEvent();
+                break;
+            case 2:
+                printDeleteEvent();
+                break;
+            case 3:
+                printExistEvent();
+                break;
+            case 4:
+                printTopEvent();
+                break;
+            default:
+                printAdminSubEvents();
+                break;
+
+        }
     }
+    private static void printGenerateEvent() {
+        //para crear evento
+    }
+    private static void printDeleteEvent() {
+        //para borrar evento
+    }
+    private static void printExistEvent() {
+        //lista de eventos existentes
+    }
+    private static void printTopEvent() {
+        //top 3 de eventos
+    }
+
 
     public static void printAdminSubBuscar() {
         //busqueda por cuil o celular
     }
 
+
     public static void printAdminMapa() {
         //para ver el mapa
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//************************************** cierre menu del administrador ******************************************//
 
 
 

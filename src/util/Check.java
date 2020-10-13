@@ -56,6 +56,22 @@ public class Check {
 
     // metodo que chequea el log in en la base nuestra
 
+    public static boolean checkPassAdmin(String pass){
+        try{
+            BufferedReader br = new BufferedReader(new FileReader("src\\archivos\\PassAdmin"));
+            String line = br.readLine();
+            while(line != null){
+                if(line.equals(pass)){
+                    return true;
+                }
+                line = br.readLine();
+            }
+
+        } catch (IOException e) {
+            e.getMessage();
+        }
+        return false;
+    }
 
 
 }
