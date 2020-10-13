@@ -1,13 +1,23 @@
 package interfaz;
 
+import entidades.Fecha;
 import usuarios.Admin;
+import usuarios.Ciudadano;
+import util.MetodosAuxiliares;
+
+import java.io.File;
 
 public class Tester {
     public static void main(String[] args) {
-        Admin x = new Admin();
-        String cuil = "20568302538";
-        String celu = "1573859463";
+        Ciudadano c = new Ciudadano("20193573592", "1583644750");
+        System.out.println(c.toString());
+        String droga = new File("BaseAnses.txt").getAbsolutePath();
+        System.out.println(droga);
 
-        x.agregarCiudadano();
+
+
+
+
+
     }
 }

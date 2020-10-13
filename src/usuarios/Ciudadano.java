@@ -37,7 +37,7 @@ public class Ciudadano {
 
 
     //Este constructor se va a usar cuando se recarguen todos los ciudadanos a partir de nuestra base local
-    public Ciudadano(boolean bloqueado, String CUIL, String celular, Encuentro anterior, Encuentro posterior, ArrayList<Evento> sintomas, String zona, int solicitudesRechazadas) {
+    public Ciudadano(String CUIL, String celular, boolean bloqueado, String zona, int solicitudesRechazadas, ArrayList<Evento> sintomas, Encuentro anterior, Encuentro posterior) {
         this.bloqueado = bloqueado;
         this.CUIL = CUIL;
         this.celular = celular;
@@ -58,22 +58,42 @@ public class Ciudadano {
 
     public String toString(){
         String strSintomas = "";
-        for (Evento e: sintomas) {
-            strSintomas += e.getNombre()+",";
+        String anteriorStr;
+        String posteriorStr;
+        try {
+            for (Evento e : sintomas) {
+                strSintomas += e.getNombre() + ",";
 
+            }
+        } catch (NullPointerException e){
+            strSintomas = "null";
         }
 
         //(2002049954(CUIL CIUD 1),1924894392(CUIL CIUD 2),100920(Fecha de Inicio en numero),250920(fecha de fin en numero)
+        try{
+            anteriorStr = anterior.toString();
+        } catch (NullPointerException e){
+            anteriorStr = "null";
+        }
+        try{
+            posteriorStr = posterior.toString();
+        } catch (NullPointerException e){
+            posteriorStr = "null";
+        }
 
 
+        String display = CUIL +"\t"+ celular +"\t"+ bloqueado +"\t"+ zona +"\t"+ solicitudesRechazadas +"\t"+ strSintomas +"\t" + anteriorStr +"\t" + posteriorStr;
 
-        String display = CUIL +"\t"+ celular +"\t"+ bloqueado +"\t"+ zona +"\t"+ solicitudesRechazadas +"\t"+ strSintomas +"\t" ;
 
-
-        return "tuma";
+        return display;
 
     }
 
+    public String getCUIL(){
+        return this.CUIL;
+    }
 
-
+    public String getCelular() {
+        return celular;
+    }
 }

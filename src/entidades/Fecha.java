@@ -23,7 +23,7 @@ public class Fecha {
                     return new Fecha(2, this.month+1, this.year);
                 }
                 else{
-                    return new Fecha(this.day+1, this.month, this.year);
+                    return new Fecha(this.day+2, this.month, this.year);
                 }
             case 12:
                 if(day == 30){
@@ -33,7 +33,7 @@ public class Fecha {
                     return new Fecha(2, 1, this.year+1);
                 }
                 else{
-                    return new Fecha(this.day+1, this.month, this.year);
+                    return new Fecha(this.day+2, this.month, this.year);
                 }
 
             //meses con 30
@@ -45,7 +45,7 @@ public class Fecha {
                     return new Fecha(2, this.month+1, this.year);
                 }
                 else{
-                    return new Fecha(this.day+1, this.month, this.year);
+                    return new Fecha(this.day+2, this.month, this.year);
                 }
 
 
@@ -58,7 +58,7 @@ public class Fecha {
                     return new Fecha(2, this.month+1, this.year);
                 }
                 else{
-                    return new Fecha(this.day+1, this.month, this.year);
+                    return new Fecha(this.day+2, this.month, this.year);
                 }
 
 
@@ -66,5 +66,10 @@ public class Fecha {
         return null;
     }
 
+    public String toString(){
+        return day + "-" + month + "-" + year;
+
+
+    }
 
 }

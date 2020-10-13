@@ -17,4 +17,16 @@ public class Encuentro {
         this.fechaFin = fechaFin;
         finDeEfecto = fechaFin.add48hs();
     }
+
+    public String toString(){
+        //(2002049954(CUIL CIUD 1),1924894392(CUIL CIUD 2),100920(Fecha de Inicio en numero),250920(fecha de fin en numero)
+
+
+
+
+        return ciud1.getCUIL()+","+ciud2.getCUIL()+","+fechaInicio.toString()+","+fechaFin.toString();
+    }
+
+
+
 }
