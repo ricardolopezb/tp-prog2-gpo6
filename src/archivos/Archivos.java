@@ -39,8 +39,6 @@ public class Archivos {
 
             }
 
-
-
         } catch(IOException e){
             e.getMessage();
         }
@@ -138,9 +136,6 @@ public class Archivos {
                 line = br.readLine();
             }
 
-
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -157,9 +152,6 @@ public class Archivos {
                 }
                 line = br.readLine();
             }
-
-
-
 
         } catch (IOException e) {
             e.printStackTrace();

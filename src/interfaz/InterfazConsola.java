@@ -8,7 +8,9 @@ import util.Scanner;
 
 public class InterfazConsola {
     public static void main(String[] args) {
-
+    /*
+        "menu de entrada e interacicon
+     */
         Admin admin = new Admin();
         System.out.println("********** TraceIt **********\n");
         //int eleccion1 = printInicio();
@@ -30,6 +32,8 @@ public class InterfazConsola {
             case 3:
                 //clearScreen();
                 admin.agregarCiudadano();
+                MetodosAuxiliares.delay(1500);
+                main(args);
                 break;
 
             case 9:
@@ -44,8 +48,12 @@ public class InterfazConsola {
     }
 
     private static void printPassAdmin() {
+        /*
+        validacion de contraseña de administrador
+         */
         String pass = Scanner.getString("Ingrese su contraseña: ");
         if(Check.checkPassAdmin(pass) ){
+            // si la contraseña es valida accede al menu especifico
             printAdminMenu();
         }else {
             System.out.println("Datos invalidos");
@@ -56,6 +64,9 @@ public class InterfazConsola {
 
     //*************************** entrada del case 1 y 2 **************************************************//
     private static void printLogeoExistoso() { //para ingreso por CUIL o celular
+      /*
+      para una vez que se complete el registro e ingreso:
+       */
         System.out.println("********** TraceIt **********");
         System.out.println("Bienvenido\n");
         System.out.println("1. Síntomas");
@@ -73,6 +84,7 @@ public class InterfazConsola {
                 printNotificaciones();
                 break;
             default:
+                System.out.println("Por favor, ingrese una opcion válida.");
                 printLogeoExistoso();
                 break;
         }
@@ -161,6 +173,9 @@ public class InterfazConsola {
 
 //******************************* menu del administrador ****************************************//
     public static void printAdminMenu(){
+        /*
+        para administrador:
+         */
         System.out.println("********** TraceIt **********\n");
         System.out.println("1. Manejar Ciudadanos");
         System.out.println("2. Notificaciones");
@@ -194,6 +209,9 @@ public class InterfazConsola {
 
 
     public static void printAdminSubManejar() {
+        /*
+        manejo de los ciudadanos
+         */
         //bloquear / desbloquear / agregar / eliminar
         System.out.println("********** TraceIt **********\n");
         System.out.println("1. Desbloquear Ciudadanos (a implementar)");
@@ -215,9 +233,14 @@ public class InterfazConsola {
                 admin.agregarCiudadano();
                 break;
             case 3:
+                //borra all:(
                 admin.eliminarCiudadano();
                 break;
             default:
+                /*
+                para que imprima nuevamente el menu de manejo de ciud
+                 */
+                System.out.println("Por favor, ingrese una opcion válida.");
                 printAdminSubManejar();
                 break;
         }
@@ -227,6 +250,9 @@ public class InterfazConsola {
 
 
     public static void printAdminSubNotif() {
+        /*
+        para tener acceso a las notificaciones
+         */
         //brotes / usuarios bloqueados
         System.out.println("********** TraceIt **********\n");
         System.out.println("1. Notificaciones de brote por zona (a implementar)");
@@ -258,6 +284,9 @@ public class InterfazConsola {
 
 
     public static void printAdminSubEvents() {
+        /*
+        para el manejo de eventos
+         */
         //crear / eliminar / ver E / top 3 eventos por zona
         //manejo de eventos
         System.out.println("********** TraceIt **********\n");
@@ -319,6 +348,9 @@ public class InterfazConsola {
 
 
     public static int printInicio(){
+        /*
+        menu inicial para el ingreso y registro, tanto como ciudadano como administrador
+         */
         System.out.println("1. Ingresar con CUIL");
         System.out.println("2. Ingresar con Celular");
         System.out.println("3. Registrarse\n");

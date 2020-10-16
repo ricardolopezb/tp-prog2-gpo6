@@ -25,6 +25,8 @@ public class Fecha {
                 else{
                     return new Fecha(this.day+2, this.month, this.year);
                 }
+
+            //diciembre
             case 12:
                 if(day == 30){
                     return new Fecha(1, 1, this.year+1);

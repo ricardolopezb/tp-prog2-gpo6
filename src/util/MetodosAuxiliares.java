@@ -53,7 +53,7 @@ public class MetodosAuxiliares {
             newYear = Integer.parseInt(year);
         } else{
             System.out.println("Datos Invalidos");
-            delay(3000);
+            delay(1500);
             InterfazConsola.clearScreen();
             return pedirFecha();
         }
