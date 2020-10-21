@@ -14,6 +14,10 @@ public class Encuentro {
     public Encuentro(String cuil1, String cuil2, Fecha fechaInicio, Fecha fechaFin) {
         this.ciud1 = Archivos.searchCUIL(cuil1);
         this.ciud2 = Archivos.searchCUIL(cuil2);
+        /*
+            checkea que el cuil este registrado en la base local.
+            evita cuiils invalidos.
+         */
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         finDeEfecto = fechaFin.add48hs();
