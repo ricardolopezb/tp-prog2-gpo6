@@ -12,7 +12,7 @@ public class InterfazConsola {
         Admin admin = new Admin();
         System.out.println("********** TraceIt **********\n");
         //int eleccion1 = printInicio();
-
+        System.out.println("Ingrese el numero de la accion que desee ejecutar:");
         switch (printInicio()) {
             case 1:
                 //clearScreen();
