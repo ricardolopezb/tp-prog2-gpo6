@@ -32,7 +32,7 @@ public class Ciudadano {
         this.zona = MetodosAuxiliares.zonaEnAnses(CUIL);
         anterior = null;
         posterior = null;
-        sintomas = null;
+        sintomas = new ArrayList<Evento>();
 
 
     }

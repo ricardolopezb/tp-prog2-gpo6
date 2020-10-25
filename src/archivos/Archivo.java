@@ -38,6 +38,14 @@ public class Archivo {
 
     }
 
+    public static boolean checkCuilInLocal(String cuil){
+        return searchCUIL(cuil) != null;
+    }
+    public static boolean checkCelInLocal(String celular){
+        return searchCelular(celular) != null;
+    }
+
+
     public static Ciudadano decode(String info){
         //CUIL\t Celular\t Bloqueado\t Zona\t Rechazos\t Sintoma1,Sintoma2,Sintoma3\t    (2002049954(CUIL CIUD 1),1924894392(CUIL CIUD 2),100920(Fecha de Inicio en numero)
 
@@ -165,8 +173,10 @@ public class Archivo {
 
     public static void printFileLines(String file){
         ArrayList<String> lines = collectFileLines(file);
+        int i = 1;
         for (String line: lines) {
-            System.out.println(line);
+            System.out.println(i + ". "+line);
+            i++;
         }
     }
 
