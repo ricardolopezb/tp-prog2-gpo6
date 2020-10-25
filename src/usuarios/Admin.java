@@ -9,6 +9,7 @@ import util.Scanner;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Admin {
 
@@ -23,26 +24,27 @@ public class Admin {
 
     public void generarEvento(){
         Archivo.printFileLines("SintomasTotales.txt");
+        ArrayList<String> sintomas = Archivo.collectFileLines("SintomasTotales.txt");
         Integer seleccion = Scanner.getInt("Seleccione el sintoma a agregar\n--> ");
         switch(seleccion){
             case 1:
-                Archivo.writeFile("Fiebre", "SintomasGenerados.txt");
-                break;
-            case 2: Archivo.writeFile("Tos", "SintomasGenerados.txt");
+                    Archivo.writeFile(sintomas.get(0), "SintomasGenerados.txt");
                     break;
-            case 3:Archivo.writeFile("Dolor de garganta", "SintomasGenerados.txt");
+            case 2: Archivo.writeFile(sintomas.get(1), "SintomasGenerados.txt");
                     break;
-            case 4:Archivo.writeFile("Dificultad respiratoria", "SintomasGenerados.txt");
+            case 3:Archivo.writeFile(sintomas.get(2), "SintomasGenerados.txt");
                     break;
-            case 5:Archivo.writeFile("Dolor muscular", "SintomasGenerados.txt");
+            case 4:Archivo.writeFile(sintomas.get(3), "SintomasGenerados.txt");
                     break;
-            case 6:Archivo.writeFile("Dolor de cabeza", "SintomasGenerados.txt");
+            case 5:Archivo.writeFile(sintomas.get(4), "SintomasGenerados.txt");
                     break;
-            case 7:Archivo.writeFile("Diarrea", "SintomasGenerados.txt");
+            case 6:Archivo.writeFile(sintomas.get(5), "SintomasGenerados.txt");
                     break;
-            case 8: Archivo.writeFile("Vómitos", "SintomasGenerados.txt");
+            case 7:Archivo.writeFile(sintomas.get(6), "SintomasGenerados.txt");
                     break;
-            case 9: Archivo.writeFile("Pérdida de gusto/olfato", "SintomasGenerados.txt");
+            case 8: Archivo.writeFile(sintomas.get(7), "SintomasGenerados.txt");
+                    break;
+            case 9: Archivo.writeFile(sintomas.get(8), "SintomasGenerados.txt");
                     break;
 
         }

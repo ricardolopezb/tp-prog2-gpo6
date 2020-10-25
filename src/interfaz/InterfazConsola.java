@@ -1,5 +1,6 @@
 package interfaz;
 
+import archivos.Archivo;
 import usuarios.Admin;
 import usuarios.Ciudadano;
 import util.Check;
@@ -8,6 +9,7 @@ import util.Scanner;
 
 public class InterfazConsola {
     static Admin admin = new Admin();
+    static Ciudadano ciudadano;
     public static void main(String[] args) {
 
         Admin admin = new Admin();
@@ -19,14 +21,14 @@ public class InterfazConsola {
                 //clearScreen();
                 System.out.println("Ingrese su CUIL");
                 String cuil_ingresado = Scanner.getString("--> ");
-                printLogeoExistoso();
+                if(Archivo.checkCuilInLocal(cuil_ingresado))printLogeoExistoso();
                 break;
 
             case 2:
                 //clearScreen();
                 System.out.println("Ingrese su Celular");
                 String cel_ingresado = Scanner.getString("--> ");
-                printLogeoExistoso();
+                if(Archivo.checkCelInLocal(cel_ingresado))printLogeoExistoso();
                 break;
             case 3:
                 //clearScreen();
@@ -82,7 +84,7 @@ public class InterfazConsola {
 
     private static void printSintoma() {
         System.out.println("********** TraceIt **********\n");
-        System.out.println("1. Reportar sintoma (a implementar)");
+        System.out.println("1. Reportar sintoma");
         System.out.println("2. Bajar sintoma (a implementar)"); //chekeado que se dice asi ? xdxd
         System.out.println("0. Regresar");
 
