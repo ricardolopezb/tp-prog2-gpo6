@@ -6,6 +6,10 @@ import util.Check;
 import util.MetodosAuxiliares;
 import util.Scanner;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 public class Admin {
 
 
@@ -18,8 +22,35 @@ public class Admin {
     }
 
     public void generarEvento(){
+        Archivo.printFileLines("SintomasTotales.txt");
+        Integer seleccion = Scanner.getInt("Seleccione el sintoma a agregar\n--> ");
+        switch(seleccion){
+            case 1:
+                Archivo.writeFile("Fiebre", "SintomasGenerados.txt");
+                break;
+            case 2: Archivo.writeFile("Tos", "SintomasGenerados.txt");
+                    break;
+            case 3:Archivo.writeFile("Dolor de garganta", "SintomasGenerados.txt");
+                    break;
+            case 4:Archivo.writeFile("Dificultad respiratoria", "SintomasGenerados.txt");
+                    break;
+            case 5:Archivo.writeFile("Dolor muscular", "SintomasGenerados.txt");
+                    break;
+            case 6:Archivo.writeFile("Dolor de cabeza", "SintomasGenerados.txt");
+                    break;
+            case 7:Archivo.writeFile("Diarrea", "SintomasGenerados.txt");
+                    break;
+            case 8: Archivo.writeFile("Vómitos", "SintomasGenerados.txt");
+                    break;
+            case 9: Archivo.writeFile("Pérdida de gusto/olfato", "SintomasGenerados.txt");
+                    break;
 
+        }
     }
+
+    /*public void darDeBajaSintoma(){
+        //debe sacarle el sintoma a los ciudadanos que lo tengan
+    }*/
 
     public void agregarCiudadano() {
         String CUIL = MetodosAuxiliares.pedirCUIL();

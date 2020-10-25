@@ -11,14 +11,7 @@ import java.util.ArrayList;
 public class Archivo {
 
     public static void addToLocal(Ciudadano c){
-        try(BufferedWriter br = new BufferedWriter(new FileWriter("src\\archivos\\BaseLocal.txt", true));){
-            br.write(c.toString() + "\n");
-
-
-        } catch(IOException e){
-            e.getMessage();
-        }
-
+        writeFile(c.toString(), "BaseLocal.txt");
     }
 
     public static void removeLocal(Ciudadano c){
@@ -167,5 +160,40 @@ public class Archivo {
         return null;
     }
 
+    public static void writeFile(String toWrite, String file){
+        //metodo para abstraer escribir en un archivo.
+
+        String directory = "src\\archivos\\" + file;
+        try(BufferedWriter br = new BufferedWriter(new FileWriter(directory, true));){
+            br.write(toWrite + "\n");
+        } catch(IOException e){
+            e.getMessage();
+        }
+    }
+
+    public static void printFileLines(String file){
+        ArrayList<String> lines = collectFileLines(file);
+        for (String line: lines) {
+            System.out.println(line);
+        }
+    }
+
+    public static ArrayList<String> collectFileLines(String file){
+        String directory = "src\\archivos\\" + file;
+        ArrayList<String> lines = new ArrayList<>();
+        try(BufferedReader br = new BufferedReader(new FileReader(directory));){
+            String line = br.readLine();
+            int i = 0;
+            while(line != null){
+                lines.add(line);
+                line = br.readLine();
+            }
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return lines;
+    }
 
 }
