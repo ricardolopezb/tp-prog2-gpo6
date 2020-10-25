@@ -21,7 +21,6 @@ public class Ciudadano {
     //                      250920(fecha de fin en numero)
 
 
-
     //este se va a usar cuando se cree un ciudadano por primera vez
     public Ciudadano(String CUIL, String celular) {
         this.CUIL = CUIL;
@@ -35,7 +34,6 @@ public class Ciudadano {
 
 
     }
-
 
     //Este constructor se va a usar cuando se recarguen todos los ciudadanos a partir de nuestra base local
     public Ciudadano(String CUIL, String celular, boolean bloqueado, String zona, int solicitudesRechazadas, ArrayList<Evento> sintomas, Encuentro anterior, Encuentro posterior) {
