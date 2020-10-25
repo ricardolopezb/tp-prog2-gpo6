@@ -7,6 +7,7 @@ import util.MetodosAuxiliares;
 import util.Scanner;
 
 public class InterfazConsola {
+    static Admin admin = new Admin();
     public static void main(String[] args) {
     /*
         "menu de entrada e interacicon
@@ -302,7 +303,7 @@ public class InterfazConsola {
                 printAdminMenu();
                 break;
             case 1:
-                printGenerateEvent();
+                admin.generarEvento();
                 break;
             case 2:
                 printDeleteEvent();

@@ -1,8 +1,10 @@
 package usuarios;
 
+import archivos.Archivo;
 import entidades.Encuentro;
 import entidades.Evento;
 import util.MetodosAuxiliares;
+import util.Scanner;
 
 import java.util.ArrayList;
 
@@ -97,5 +99,35 @@ public class Ciudadano {
 
     public String getCelular() {
         return celular;
+    }
+
+    public void agregarSintoma(){
+        String file = "SintomasGenerados.txt";
+        Archivo.printFileLines(file);
+        ArrayList<String> sintomasPosibles = Archivo.collectFileLines(file);
+        Integer seleccion = Scanner.getInt("Seleccione su sintoma\n--> ");
+        switch(seleccion){
+            case 1:
+                sintomas.add(new Evento(sintomasPosibles.get(0)));
+                break;
+            case 2: sintomas.add(new Evento(sintomasPosibles.get(1)));
+                break;
+            case 3:sintomas.add(new Evento(sintomasPosibles.get(2)));
+                break;
+            case 4:sintomas.add(new Evento(sintomasPosibles.get(3)));
+                break;
+            case 5:sintomas.add(new Evento(sintomasPosibles.get(4)));
+                break;
+            case 6:sintomas.add(new Evento(sintomasPosibles.get(5)));
+                break;
+            case 7:sintomas.add(new Evento(sintomasPosibles.get(6)));
+                break;
+            case 8: sintomas.add(new Evento(sintomasPosibles.get(7)));
+                break;
+            case 9: sintomas.add(new Evento(sintomasPosibles.get(8)));
+                break;
+            default:
+                System.out.println("Ingrese una opcion valida");
+        }
     }
 }
