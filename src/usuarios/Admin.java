@@ -1,6 +1,6 @@
 package usuarios;
 
-import archivos.Archivos;
+import archivos.Archivo;
 import interfaz.InterfazConsola;
 import util.Check;
 import util.MetodosAuxiliares;
@@ -17,6 +17,9 @@ public class Admin {
         c.setBloqueado(true);
     }
 
+    public void generarEvento(){
+
+    }
 
     public void agregarCiudadano() {
         String CUIL = MetodosAuxiliares.pedirCUIL();
@@ -24,7 +27,7 @@ public class Admin {
         String celular = MetodosAuxiliares.pedirCel();
 
         if (Check.checkAnses(CUIL, celular)) {
-            Archivos.addToLocal(new Ciudadano(CUIL, celular));
+            Archivo.addToLocal(new Ciudadano(CUIL, celular));
             System.out.println("Ciudadano registrado con exito.");
         } else {
             System.out.println("Datos Invalidos");
@@ -43,13 +46,13 @@ public class Admin {
         switch (opcion) {
             case 1:
                 String CUIL = Scanner.getString("Ingrese el CUIL del Ciudadano a eliminar\n--> ");
-                Ciudadano c = Archivos.searchCUIL(CUIL);
-                Archivos.removeLocal(c);
+                Ciudadano c = Archivo.searchCUIL(CUIL);
+                Archivo.removeLocal(c);
                 break;
             case 2:
                 String celular = Scanner.getString("Ingrese el Celular del Ciudadano a eliminar\n--> ");
-                Ciudadano x = Archivos.searchCelular(celular);
-                Archivos.removeLocal(x);
+                Ciudadano x = Archivo.searchCelular(celular);
+                Archivo.removeLocal(x);
                 break;
         }
 

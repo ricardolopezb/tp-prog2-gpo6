@@ -15,6 +15,7 @@ public class Ciudadano {
     ArrayList<Evento> sintomas;
     final String zona;
     int solicitudesRechazadas;
+    boolean covid;
 
     //  CUIL\t Celular\t Bloqueado\t Zona\t Rechazos\t Sintoma1,Sintoma2,Sintoma3\t(2002049954(CUIL CIUD 1),1924894392(CUIL CIUD 2),100920(Fecha de Inicio en numero),
     //                      250920(fecha de fin en numero)
@@ -46,6 +47,7 @@ public class Ciudadano {
         this.sintomas = sintomas;
         this.zona = zona;
         this.solicitudesRechazadas = solicitudesRechazadas;
+        this.covid = checkCovid();
     }
 
     public void setBloqueado(boolean bloqueado) {
@@ -84,6 +86,11 @@ public class Ciudadano {
 
         return display;
 
+    }
+
+    public boolean checkCovid(){
+        //return sintomas.containsAll(listadesintomas xd);
+        return true;
     }
 
     public String getCUIL(){

@@ -8,7 +8,7 @@ import usuarios.Ciudadano;
 import java.io.*;
 import java.util.ArrayList;
 
-public class Archivos {
+public class Archivo {
 
     public static void addToLocal(Ciudadano c){
         try(BufferedWriter br = new BufferedWriter(new FileWriter("src\\archivos\\BaseLocal.txt", true));){
