@@ -65,6 +65,22 @@ public class Ciudadano {
         overwrite();
     }
 
+    public void setSolicitudesRechazadas(int solicitudesRechazadas) {
+        this.solicitudesRechazadas = solicitudesRechazadas;
+    }
+
+    public void addSolicitudRechazada(){
+        this.solicitudesRechazadas++;
+        checkSolicitudes();
+        overwrite();
+    }
+
+    private void checkSolicitudes() {
+        if(this.solicitudesRechazadas == 5){
+            this.bloqueado = true;
+        }
+    }
+
     public void printCiudadano(){
         //Un metodo que printea los datos de un ciudadano en especifico. Para que lo use el admin en el metodo para obtener info.
     }
@@ -228,7 +244,14 @@ public class Ciudadano {
                 case 'y':
                     if(anterior == null){
                         anterior = new Encuentro(requester.getCUIL(), this.CUIL, new Fecha(Integer.parseInt(fechaDividida[0]),Integer.parseInt(fechaDividida[1]),Integer.parseInt(fechaDividida[2])));
+                    } else{
+                        ante_anterior = anterior;
+                        anterior = new Encuentro(requester.getCUIL(), this.CUIL, new Fecha(Integer.parseInt(fechaDividida[0]),Integer.parseInt(fechaDividida[1]),Integer.parseInt(fechaDividida[2])));
+
                     }
+                case 'n':
+                    addSolicitudRechazada();
+                    requester.addSolicitudRechazada();
             }
         }
     }
