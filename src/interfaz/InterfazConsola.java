@@ -183,7 +183,8 @@ public class InterfazConsola {
         System.out.println("2. Notificaciones");
         System.out.println("3. Manejar Eventos");
         System.out.println("4. Buscar Ciudadanos (a implementar)");
-        System.out.println("5. Ver Mapa de Brotes (a implementar)");
+        System.out.println("5. Ver Mapa de Brotes (a implementar)\n");
+        System.out.println("9. Salir");
 
         switch(Scanner.getInt("--> ")){
             case 1:
@@ -201,6 +202,8 @@ public class InterfazConsola {
             case 5:
                 printAdminMapa();
                 break;
+            case 9:
+                System.exit(0);
 
             default:
                 printAdminMenu();
