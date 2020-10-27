@@ -60,9 +60,6 @@ public class Admin {
 
     }
 
-    /*public void darDeBajaSintoma(){
-        //debe sacarle el sintoma a los ciudadanos que lo tengan
-    }*/
 
     public void agregarCiudadano() {
         String CUIL = MetodosAuxiliares.pedirCUIL();
