@@ -39,7 +39,7 @@ public class Archivo {
 
 
     public static void removeLocal(Ciudadano c){
-        removeLine(c.toString(), "BaseLocal.txt");
+        removeLine(c.getCUIL(), "BaseLocal.txt");
     }
 
 

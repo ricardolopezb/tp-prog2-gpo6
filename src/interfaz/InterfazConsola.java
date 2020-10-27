@@ -72,7 +72,8 @@ public class InterfazConsola {
         System.out.println("Bienvenido\n");
         System.out.println("1. Síntomas");
         System.out.println("2. Reportar contacto cercano (a implementar)");
-        System.out.println("3. Notificaciones");
+        System.out.println("3. Notificaciones\n");
+        System.out.println("9. Salir");
 
         switch (Scanner.getInt("--> ")) {
             case 1:
@@ -84,6 +85,9 @@ public class InterfazConsola {
             case 3:
                 printNotificaciones();
                 break;
+            case 9:
+                ciudadano.overwrite();
+                System.exit(0);
             default:
                 printLogeoExistoso();
                 break;
