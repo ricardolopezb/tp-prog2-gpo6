@@ -15,7 +15,7 @@ public class Ciudadano {
     Encuentro anterior;
     Encuentro posterior;
     ArrayList<Evento> sintomas;
-    final String zona;
+    String zona;
     int solicitudesRechazadas;
     boolean covid;
 
@@ -33,6 +33,7 @@ public class Ciudadano {
         anterior = null;
         posterior = null;
         sintomas = new ArrayList<Evento>();
+        this.covid = false;
 
 
     }
@@ -47,11 +48,12 @@ public class Ciudadano {
         this.sintomas = sintomas;
         this.zona = zona;
         this.solicitudesRechazadas = solicitudesRechazadas;
-        this.covid = checkCovid();
+        checkCovid();
     }
 
     public void setBloqueado(boolean bloqueado) {
         this.bloqueado = bloqueado;
+        overwrite();
     }
 
     public void printCiudadano(){
@@ -88,9 +90,12 @@ public class Ciudadano {
 
     }
 
-    public boolean checkCovid(){
-        //return sintomas.containsAll(listadesintomas xd);
-        return true;
+    public void checkCovid(){
+        if(sintomas.containsAll(Archivo.collectFileLines("SintomasGenerados.txt"))){
+            this.covid = true;
+            overwrite();
+
+        }
     }
 
     public String getCUIL(){
@@ -106,6 +111,10 @@ public class Ciudadano {
         Archivo.printFileLines(file);
         ArrayList<String> sintomasPosibles = Archivo.collectFileLines(file);
         Integer seleccion = Scanner.getInt("Seleccione su sintoma\n--> ");
+        for (String sintomasPosible : sintomasPosibles) {
+            System.out.println(sintomasPosible);
+
+        }
         switch(seleccion){
             case 1:
                 sintomas.add(new Evento(sintomasPosibles.get(0)));
@@ -129,5 +138,36 @@ public class Ciudadano {
             default:
                 System.out.println("Ingrese una opcion valida");
         }
+        overwrite();
+    }
+
+    public void removerSintoma(){
+        System.out.println("Seleccione el Sintoma a remover: ");
+        for (int i = 0; i < sintomas.size(); i++) {
+            System.out.println((i+1)+ ". " + sintomas.get(i).getNombre());
+        }
+        Integer seleccion = Scanner.getInt("--> ");
+        if(seleccion >0 && seleccion <= sintomas.size()){
+            sintomas.remove(seleccion-1);
+        }
+    }
+
+
+    public void overwrite(){
+        Archivo.removeLocal(this);
+        Archivo.addToLocal(this);
+    }
+
+    public void setZona(String zona) {
+        this.zona = zona;
+    }
+
+
+    public String getZona() {
+        return zona;
+    }
+
+    public ArrayList<Evento> getSintomas() {
+        return sintomas;
     }
 }

@@ -1,5 +1,6 @@
 package interfaz;
 
+import archivos.Archivo;
 import usuarios.Admin;
 import usuarios.Ciudadano;
 import util.Check;
@@ -7,13 +8,13 @@ import util.Check;
 public class Tester {
     public static void main(String[] args) {
 
-        Admin admin = new Admin();
-        admin.generarEvento();
+        Ciudadano c = Archivo.searchCUIL("20465925434");
+        System.out.println(c.getZona());
+        c.setZona("Pilar");
+        c.overwrite();
+        System.out.println(c.getZona());
 
-        Ciudadano c1 = new Ciudadano("2121111515", "2511151155");
-        c1.agregarSintoma();
 
-        System.out.println(c1.toString());
 
 
 

@@ -1,6 +1,7 @@
 package interfaz;
 
 import archivos.Archivo;
+import entidades.Evento;
 import usuarios.Admin;
 import usuarios.Ciudadano;
 import util.Check;
@@ -10,6 +11,7 @@ import util.Scanner;
 public class InterfazConsola {
     static Admin admin = new Admin();
     static Ciudadano ciudadano;
+
     public static void main(String[] args) {
     /*
         "menu de entrada e interacicon
@@ -23,14 +25,21 @@ public class InterfazConsola {
                 //clearScreen();
                 System.out.println("Ingrese su CUIL");
                 String cuil_ingresado = Scanner.getString("--> ");
-                if(Archivo.checkCuilInLocal(cuil_ingresado))printLogeoExistoso();
+                if(Archivo.checkCuilInLocal(cuil_ingresado)) {
+                    ciudadano = Archivo.searchCUIL(cuil_ingresado);
+                    printLogeoExistoso();
+
+                }
                 break;
 
             case 2:
                 //clearScreen();
                 System.out.println("Ingrese su Celular");
                 String cel_ingresado = Scanner.getString("--> ");
-                if(Archivo.checkCelInLocal(cel_ingresado))printLogeoExistoso();
+                if(Archivo.checkCelInLocal(cel_ingresado)) {
+                    ciudadano = Archivo.searchCelular(cel_ingresado);
+                    printLogeoExistoso();
+                }
                 break;
             case 3:
                 //clearScreen();
@@ -74,7 +83,8 @@ public class InterfazConsola {
         System.out.println("Bienvenido\n");
         System.out.println("1. Síntomas");
         System.out.println("2. Reportar contacto cercano (a implementar)");
-        System.out.println("3. Notificaciones");
+        System.out.println("3. Notificaciones\n");
+        System.out.println("9. Salir");
 
         switch (Scanner.getInt("--> ")) {
             case 1:
@@ -86,6 +96,9 @@ public class InterfazConsola {
             case 3:
                 printNotificaciones();
                 break;
+            case 9:
+                ciudadano.overwrite();
+                System.exit(0);
             default:
                 System.out.println("Por favor, ingrese una opcion válida.");
                 printLogeoExistoso();
@@ -97,7 +110,7 @@ public class InterfazConsola {
     private static void printSintoma() {
         System.out.println("********** TraceIt **********\n");
         System.out.println("1. Reportar sintoma");
-        System.out.println("2. Bajar sintoma (a implementar)"); //chekeado que se dice asi ? xdxd
+        System.out.println("2. Bajar sintoma"); //chekeado que se dice asi ? xdxd
         System.out.println("0. Regresar");
 
         switch (Scanner.getInt("--> ")){
@@ -116,10 +129,11 @@ public class InterfazConsola {
         }
     }
     private static void darAltaSintoma() {
-        //a implementar
+        ciudadano.agregarSintoma();
     }
     private static void darBajaSintoma(){
-        //a implementar
+        ciudadano.removerSintoma();
+
     }
 
 
@@ -294,9 +308,9 @@ public class InterfazConsola {
         //manejo de eventos
         System.out.println("********** TraceIt **********\n");
         System.out.println("Manejo de eventos");
-        System.out.println("1. Generar evento (a implementar)");
-        System.out.println("2. Eliminiar evento (a implementar)");
-        System.out.println("3. Ver eventos existentes (a implementar)");
+        System.out.println("1. Generar evento");
+        System.out.println("2. Eliminar evento");
+        System.out.println("3. Ver eventos existentes");
         System.out.println("4. Ver top de eventos por zona (a implementar)");
         System.out.println("\n0. Regresar");
 
@@ -308,10 +322,10 @@ public class InterfazConsola {
                 admin.generarEvento();
                 break;
             case 2:
-                printDeleteEvent();
+                admin.eliminarEvento();
                 break;
             case 3:
-                printExistEvent();
+                Archivo.printFileLines("SintomasGenerados.txt");
                 break;
             case 4:
                 printTopEvent();
