@@ -11,6 +11,7 @@ import util.Scanner;
 public class InterfazConsola {
     static Admin admin = new Admin();
     static Ciudadano ciudadano;
+
     public static void main(String[] args) {
 
         Admin admin = new Admin();
