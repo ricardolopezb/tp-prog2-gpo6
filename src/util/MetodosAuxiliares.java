@@ -76,7 +76,7 @@ public class MetodosAuxiliares {
         return "";
     }
 
-    public static String zonaEnAnses(String CUIL){
+    private static String searchEnAnses(String CUIL, Integer posicion){
         try{
             BufferedReader br = new BufferedReader(new FileReader("src\\archivos\\BaseAnses.txt"));
             String line = br.readLine();
@@ -84,7 +84,7 @@ public class MetodosAuxiliares {
             while(line != null){
                 String[] x = line.split("\t");
                 if(x[1].equals(CUIL)){
-                    return x[3];
+                    return x[posicion];
                 }
                 line = br.readLine();
             }
@@ -94,6 +94,15 @@ public class MetodosAuxiliares {
             e.getMessage();
         }
         return "-";
+    }
+
+
+
+    public static String zonaEnAnses(String CUIL){
+        return searchEnAnses(CUIL, 3);
+    }
+    public static String nombreEnAnses(String CUIL){
+        return searchEnAnses(CUIL, 0);
     }
 
 

@@ -16,6 +16,7 @@ public class Admin {
 
     public void desbloquear(Ciudadano c) {
         c.setBloqueado(false);
+        c.setSolicitudesRechazadas(0);
     }
 
     public void bloquear(Ciudadano c) {
@@ -60,9 +61,6 @@ public class Admin {
 
     }
 
-    /*public void darDeBajaSintoma(){
-        //debe sacarle el sintoma a los ciudadanos que lo tengan
-    }*/
 
     public void agregarCiudadano() {
         String CUIL = MetodosAuxiliares.pedirCUIL();

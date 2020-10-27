@@ -94,12 +94,12 @@ public class Archivo {
             e1 = null;
         } else{
             String[] encuentro1Split = encuentro1NoSplit.split(",");
-            String[] fch1 = encuentro1Split[2].split("-");
-            int[]f1 = new int[3];;
-            for (int i = 0; i < fch1.length ; i++) {
-                f1[i] = Integer.parseInt(fch1[i]);
-            }
-            Fecha fecha1 = new Fecha(f1[0], f1[1], f1[2]);
+            //String[] fch1 = encuentro1Split[2].split("-");
+            //int[]f1 = new int[3];;
+            //for (int i = 0; i < fch1.length ; i++) {
+            //    f1[i] = Integer.parseInt(fch1[i]);
+            //}
+            //Fecha fecha1 = new Fecha(f1[0], f1[1], f1[2]);
 
 
             String[] fch2 = encuentro1Split[3].split("-");
@@ -109,19 +109,20 @@ public class Archivo {
             }
 
             Fecha fecha2 = new Fecha(f2[0], f2[1], f2[2]);
-            e1 = new Encuentro(encuentro1Split[0], encuentro1Split[1], fecha1, fecha2);
+            // fecha1, estaba en los parametros del constructor.
+            e1 = new Encuentro(encuentro1Split[0], encuentro1Split[1], fecha2);
 
         }
         if(encuentro2NoSplit.equals("null")){
             e2 = null;
         } else{
             String[] encuentro2Split = encuentro2NoSplit.split(",");
-            String[] fch3 = encuentro2Split[2].split("-");
-            int[]f3 = new int[3];;
-            for (int i = 0; i < fch3.length ; i++) {
-                f3[i] = Integer.parseInt(fch3[i]);
-            }
-            Fecha fecha3 = new Fecha(f3[0], f3[1], f3[2]);
+            //String[] fch3 = encuentro2Split[2].split("-");
+            //int[]f3 = new int[3];;
+            //for (int i = 0; i < fch3.length ; i++) {
+            //    f3[i] = Integer.parseInt(fch3[i]);
+            //}
+            //Fecha fecha3 = new Fecha(f3[0], f3[1], f3[2]);
 
 
             String[] fch4 = encuentro2Split[3].split("-");
@@ -131,7 +132,8 @@ public class Archivo {
             }
 
             Fecha fecha4 = new Fecha(f4[0], f4[1], f4[2]);
-            e2 = new Encuentro(encuentro2Split[0], encuentro2Split[1], fecha3, fecha4);
+            //en los parametros de aca abajo estaba fecha3, como fecha de inicio.
+            e2 = new Encuentro(encuentro2Split[0], encuentro2Split[1],  fecha4);
         }
 
         return new Ciudadano(cuil, celular, block, zona, rechazos, sintomas, e1, e2);
@@ -141,12 +143,12 @@ public class Archivo {
 
     }
 
-    public static Ciudadano searchCUIL(String CUIL){
+    private static Ciudadano searchCiudadanoBy(String criterio, int posicion){
         try(BufferedReader br = new BufferedReader(new FileReader("src\\archivos\\BaseLocal.txt"));){
             String line = br.readLine();
             while(line != null){
                 String[] x = line.split("\t");
-                if(CUIL.equals(x[0])){
+                if(criterio.equals(x[posicion])){
                     return decode(line);
                 }
                 line = br.readLine();
@@ -158,20 +160,12 @@ public class Archivo {
         return null;
     }
 
+    public static Ciudadano searchCUIL(String CUIL){
+        return searchCiudadanoBy(CUIL, 0);
+    }
+
     public static Ciudadano searchCelular(String cel){
-        try(BufferedReader br = new BufferedReader(new FileReader("src\\archivos\\BaseLocal.txt"));){
-            String line = br.readLine();
-            while(line != null){
-                String[] x = line.split("\t");
-                if(cel.equals(x[1])){
-                    return decode(line);
-                }
-                line = br.readLine();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return searchCiudadanoBy(cel, 1);
     }
 
     public static void writeFile(String toWrite, String file){

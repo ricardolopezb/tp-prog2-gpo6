@@ -3,21 +3,26 @@ package usuarios;
 import archivos.Archivo;
 import entidades.Encuentro;
 import entidades.Evento;
+import entidades.Fecha;
 import util.MetodosAuxiliares;
 import util.Scanner;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Ciudadano {
-    boolean bloqueado;
-    final String CUIL;
-    final String celular;
-    Encuentro anterior;
-    Encuentro posterior;
-    ArrayList<Evento> sintomas;
-    String zona;
-    int solicitudesRechazadas;
-    boolean covid;
+    private boolean bloqueado;
+    private final String nombre;
+    private final String CUIL;
+    private final String celular;
+    private Encuentro anterior;
+    private Encuentro ante_anterior;
+    private ArrayList<Evento> sintomas;
+    private String zona;
+    private int solicitudesRechazadas;
+    private boolean covid;
 
     //  CUIL\t Celular\t Bloqueado\t Zona\t Rechazos\t Sintoma1,Sintoma2,Sintoma3\t(2002049954(CUIL CIUD 1),1924894392(CUIL CIUD 2),100920(Fecha de Inicio en numero),
     //                      250920(fecha de fin en numero)
@@ -31,7 +36,8 @@ public class Ciudadano {
         solicitudesRechazadas = 0;
         this.zona = MetodosAuxiliares.zonaEnAnses(CUIL);
         anterior = null;
-        posterior = null;
+        ante_anterior = null;
+        this.nombre = MetodosAuxiliares.nombreEnAnses(CUIL);
         sintomas = new ArrayList<Evento>();
         this.covid = false;
 
@@ -44,9 +50,10 @@ public class Ciudadano {
         this.CUIL = CUIL;
         this.celular = celular;
         this.anterior = anterior;
-        this.posterior = posterior;
+        this.ante_anterior = posterior;
         this.sintomas = sintomas;
         this.zona = zona;
+        this.nombre = MetodosAuxiliares.nombreEnAnses(CUIL);
         this.solicitudesRechazadas = solicitudesRechazadas;
         checkCovid();
     }
@@ -56,8 +63,28 @@ public class Ciudadano {
         overwrite();
     }
 
+    public void setSolicitudesRechazadas(int solicitudesRechazadas) {
+        this.solicitudesRechazadas = solicitudesRechazadas;
+    }
+
+    public void addSolicitudRechazada(){
+        this.solicitudesRechazadas++;
+        checkSolicitudes();
+        overwrite();
+    }
+
+    private void checkSolicitudes() {
+        if(this.solicitudesRechazadas == 5){
+            this.bloqueado = true;
+        }
+    }
+
     public void printCiudadano(){
         //Un metodo que printea los datos de un ciudadano en especifico. Para que lo use el admin en el metodo para obtener info.
+    }
+
+    public String getNombre() {
+        return nombre;
     }
 
     public String toString(){
@@ -79,7 +106,7 @@ public class Ciudadano {
             anteriorStr = "null";
         }
         try{
-            posteriorStr = posterior.toString();
+            posteriorStr = ante_anterior.toString();
         } catch (NullPointerException e){
             posteriorStr = "null";
         }
@@ -170,4 +197,82 @@ public class Ciudadano {
     public ArrayList<Evento> getSintomas() {
         return sintomas;
     }
+
+    public void solicitudDeContacto(){
+        System.out.println("Buscar ciudadano por: \n1. CUIL\n2. Celular");
+        Integer seleccion = Scanner.getInt("--> ");
+        Ciudadano buscado = null;
+        switch (seleccion){
+            case 1:
+                String cuil_de_buscado = Scanner.getString("Ingrese el CUIL del ciudadano:\n--> ");
+                buscado = Archivo.searchCUIL(cuil_de_buscado);
+                break;
+            case 2:
+                String celular_de_buscado = Scanner.getString("Ingrese el Celular del ciudadano:\n--> ");
+                buscado = Archivo.searchCUIL(celular_de_buscado);
+                break;
+            default:
+                System.out.println("Ingrese una opcion valida");
+                //clearScreen();
+                solicitudDeContacto();
+
+        }
+        Fecha fechaDeEncuentro = MetodosAuxiliares.pedirFecha();
+        String toWrite = "";
+        if(buscado != null){
+            toWrite = buscado.getCUIL() + "@"+ this.CUIL +"@"+ fechaDeEncuentro.toString();
+        }
+        Archivo.writeFile(toWrite, "Notificaciones.txt");
+
+    }
+
+    public void checkNotifications(){
+        if(!(lookUpNotification().equals("-"))){
+            String notificacion = lookUpNotification();
+            String[] divided = notificacion.split("@");
+            String[] fechaDividida = divided[2].split("-");
+
+            Ciudadano requester = Archivo.searchCUIL(divided[1]);
+
+            System.out.println("--- Solicitud de Encuentro ---");
+            System.out.println(requester.getNombre() + " dice que tuvieron contacto el " + fechaDividida[0] +
+                    "/"+fechaDividida[1]);
+            char seleccion = Character.toLowerCase(Scanner.getChar("Acepta? Y/N\n--> "));
+            switch(seleccion){
+                case 'y':
+                    if(anterior == null){
+                        anterior = new Encuentro(requester.getCUIL(), this.CUIL, new Fecha(Integer.parseInt(fechaDividida[0]),Integer.parseInt(fechaDividida[1]),Integer.parseInt(fechaDividida[2])));
+                    } else{
+                        ante_anterior = anterior;
+                        anterior = new Encuentro(requester.getCUIL(), this.CUIL, new Fecha(Integer.parseInt(fechaDividida[0]),Integer.parseInt(fechaDividida[1]),Integer.parseInt(fechaDividida[2])));
+
+                    }
+                case 'n':
+                    addSolicitudRechazada();
+                    requester.addSolicitudRechazada();
+            }
+        }
+    }
+
+
+    private String lookUpNotification(){
+        try(BufferedReader br = new BufferedReader(new FileReader("src\\archivos\\Notificaciones.txt"));){
+            String line = br.readLine();
+            while(line != null){
+                if(line.startsWith(this.CUIL)){
+                    return line;
+                }
+                line = br.readLine();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "-";
+    }
+
+
+
+
+
 }
