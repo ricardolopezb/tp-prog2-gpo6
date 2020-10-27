@@ -6,7 +6,9 @@ import entidades.Fecha;
 import usuarios.Ciudadano;
 
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Archivo {
 
@@ -14,37 +16,48 @@ public class Archivo {
         writeFile(c.toString(), "BaseLocal.txt");
     }
 
-    public static void removeLocal(Ciudadano c){
-        String toRemove = c.toString();
-        try{
-            BufferedReader reader = new BufferedReader(new FileReader("src\\archivos\\BaseLocal.txt"));
-            BufferedWriter writer = new BufferedWriter(new FileWriter("src\\archivos\\BaseLocal.txt"));
+    public static void overwrite(Ciudadano ciudadano){
+        removeLocal(ciudadano);
+        addToLocal(ciudadano);
+    }
 
-            String currentLine;
-
-            while(null != (currentLine = reader.readLine())) {
-                if(currentLine.trim().equals(toRemove)){
-                    writer.write("");
-                    writer.close();
-                    reader.close();
-                    break;
-                }
-
+    public static void removeLine(String toRemove, String file){
+        ArrayList<String> allLines = collectFileLines(file);
+        for(Iterator<String> itr = allLines.iterator(); itr.hasNext();){
+            String line = itr.next();
+            if(line.startsWith(toRemove)){
+                itr.remove();
+                cleanFile(file);
             }
 
-
-
-        } catch(IOException e){
-            e.getMessage();
         }
+        for (String line : allLines) {
+            writeFile(line, file);
 
+        }
     }
+
+
+    public static void removeLocal(Ciudadano c){
+        removeLine(c.toString(), "BaseLocal.txt");
+    }
+
 
     public static boolean checkCuilInLocal(String cuil){
         return searchCUIL(cuil) != null;
     }
     public static boolean checkCelInLocal(String celular){
         return searchCelular(celular) != null;
+    }
+
+    private static void cleanFile(String file){
+        try {
+            PrintWriter writer = new PrintWriter(new File(("src\\archivos\\"+file)));
+            writer.print("");
+            writer.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -68,7 +81,7 @@ public class Archivo {
         Encuentro e2;
 
         if(sintomasNoSplit.equals("null")){
-            sintomas = null;
+            sintomas = new ArrayList<Evento>();
         } else{
             sintomas = new ArrayList<>();
             String[] sintomasSplit = sintomasNoSplit.split(",");
@@ -139,9 +152,6 @@ public class Archivo {
                 line = br.readLine();
             }
 
-
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -158,10 +168,6 @@ public class Archivo {
                 }
                 line = br.readLine();
             }
-
-
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }

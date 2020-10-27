@@ -50,6 +50,16 @@ public class Admin {
         }
     }
 
+    public void eliminarEvento(){
+        Archivo.printFileLines("SintomasGenerados.txt");
+        ArrayList<String> sintomasGenerados = Archivo.collectFileLines("SintomasGenerados.txt");
+        Integer seleccion = Scanner.getInt("--> ");
+        if(seleccion > 0 && seleccion <= sintomasGenerados.size()){
+            Archivo.removeLine(sintomasGenerados.get(seleccion-1), "SintomasGenerados.txt");
+        }
+
+    }
+
     /*public void darDeBajaSintoma(){
         //debe sacarle el sintoma a los ciudadanos que lo tengan
     }*/
