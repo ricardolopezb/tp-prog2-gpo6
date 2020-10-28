@@ -1,9 +1,10 @@
-package usuarios;
+ package usuarios;
 
 import archivos.Archivo;
 import entidades.Encuentro;
 import entidades.Evento;
 import entidades.Fecha;
+import interfaz.InterfazConsola;
 import notificaciones.ContactNotification;
 import notificaciones.Notification;
 import util.MetodosAuxiliares;
@@ -195,7 +196,6 @@ public class Ciudadano {
         }
     }
 
-
     public void overwrite(){
         Archivo.removeLocal(this);
         Archivo.addToLocal(this);
@@ -204,7 +204,6 @@ public class Ciudadano {
     public void setZona(String zona) {
         this.zona = zona;
     }
-
 
     public String getZona() {
         return zona;
@@ -261,6 +260,7 @@ public class Ciudadano {
         Notification notificacion = checkNotifications();
         if (notificacion == null){
             System.out.println("No hay notificaciones para mostrar...");
+            InterfazConsola.printLogeoExistoso();
         } else{
             if(notificacion instanceof ContactNotification){
                 notificacion.printNotification();
