@@ -4,6 +4,8 @@ import archivos.Archivo;
 import entidades.Encuentro;
 import entidades.Evento;
 import entidades.Fecha;
+import notificaciones.ContactNotification;
+import notificaciones.Notification;
 import util.MetodosAuxiliares;
 import util.Scanner;
 
@@ -80,7 +82,12 @@ public class Ciudadano {
     }
 
     public void printCiudadano(){
-        //Un metodo que printea los datos de un ciudadano en especifico. Para que lo use el admin en el metodo para obtener info.
+        System.out.println("Nombre: " + this.nombre);
+        System.out.println("CUIL: " + this.CUIL);
+        System.out.println("Celular: " + this.celular);
+        System.out.println("Zona: " + this.zona);
+
+
     }
 
     public String getNombre() {
@@ -122,6 +129,15 @@ public class Ciudadano {
             this.covid = true;
             overwrite();
 
+        }
+    }
+
+    public void initializeEncuentro(){
+        if(this.ante_anterior != null){
+            ante_anterior.initializeCiudadanos();
+        }
+        if(this.anterior != null){
+            anterior.initializeCiudadanos();
         }
     }
 
@@ -218,49 +234,18 @@ public class Ciudadano {
 
         }
         Fecha fechaDeEncuentro = MetodosAuxiliares.pedirFecha();
-        String toWrite = "";
-        if(buscado != null){
-            toWrite = buscado.getCUIL() + "@"+ this.CUIL +"@"+ fechaDeEncuentro.toString();
-        }
-        Archivo.writeFile(toWrite, "Notificaciones.txt");
+        ContactNotification notifDeContacto = new ContactNotification(buscado, this, fechaDeEncuentro);
+        notifDeContacto.send();
 
     }
 
-    public void checkNotifications(){
-        if(!(lookUpNotification().equals("-"))){
-            String notificacion = lookUpNotification();
-            String[] divided = notificacion.split("@");
-            String[] fechaDividida = divided[2].split("-");
-
-            Ciudadano requester = Archivo.searchCUIL(divided[1]);
-
-            System.out.println("--- Solicitud de Encuentro ---");
-            System.out.println(requester.getNombre() + " dice que tuvieron contacto el " + fechaDividida[0] +
-                    "/"+fechaDividida[1]);
-            char seleccion = Character.toLowerCase(Scanner.getChar("Acepta? Y/N\n--> "));
-            switch(seleccion){
-                case 'y':
-                    if(anterior == null){
-                        anterior = new Encuentro(requester.getCUIL(), this.CUIL, new Fecha(Integer.parseInt(fechaDividida[0]),Integer.parseInt(fechaDividida[1]),Integer.parseInt(fechaDividida[2])));
-                    } else{
-                        ante_anterior = anterior;
-                        anterior = new Encuentro(requester.getCUIL(), this.CUIL, new Fecha(Integer.parseInt(fechaDividida[0]),Integer.parseInt(fechaDividida[1]),Integer.parseInt(fechaDividida[2])));
-
-                    }
-                case 'n':
-                    addSolicitudRechazada();
-                    requester.addSolicitudRechazada();
-            }
-        }
-    }
-
-
-    private String lookUpNotification(){
+    public Notification checkNotifications(){
         try(BufferedReader br = new BufferedReader(new FileReader("src\\archivos\\Notificaciones.txt"));){
             String line = br.readLine();
             while(line != null){
-                if(line.startsWith(this.CUIL)){
-                    return line;
+                String[] lineContents = line.split("@");
+                if(lineContents[1].startsWith(this.CUIL)){
+                    return Notification.deserialize(line);
                 }
                 line = br.readLine();
             }
@@ -268,11 +253,46 @@ public class Ciudadano {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "-";
+        return null;
+
+    }
+
+    public void showNotifications(){
+        Notification notificacion = checkNotifications();
+        if (notificacion == null){
+            System.out.println("No hay notificaciones para mostrar...");
+        } else{
+            if(notificacion instanceof ContactNotification){
+                notificacion.printNotification();
+                notificacion.deleteNotification();
+                ((ContactNotification) notificacion).getResponse();
+            } else{
+                notificacion.printNotification();
+                notificacion.deleteNotification();
+
+            }
+
+        }
+
+
     }
 
 
 
 
+    public Encuentro getAnterior() {
+        return anterior;
+    }
 
+    public void setAnterior(Encuentro anterior) {
+        this.anterior = anterior;
+    }
+
+    public Encuentro getAnte_anterior() {
+        return ante_anterior;
+    }
+
+    public void setAnte_anterior(Encuentro ante_anterior) {
+        this.ante_anterior = ante_anterior;
+    }
 }

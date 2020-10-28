@@ -12,6 +12,8 @@ import java.util.Iterator;
 
 public class Archivo {
 
+    private ArrayList<Ciudadano>ciudadanosParaEncuentro = new ArrayList<>();
+
     public static void addToLocal(Ciudadano c){
         writeFile(c.toString(), "BaseLocal.txt");
     }
@@ -63,8 +65,6 @@ public class Archivo {
 
     public static Ciudadano decode(String info){
         //CUIL\t Celular\t Bloqueado\t Zona\t Rechazos\t Sintoma1,Sintoma2,Sintoma3\t    (2002049954(CUIL CIUD 1),1924894392(CUIL CIUD 2),100920(Fecha de Inicio en numero)
-
-
         String[] tabSplit = info.split("\t");
 
         String cuil = tabSplit[0];
@@ -138,9 +138,6 @@ public class Archivo {
 
         return new Ciudadano(cuil, celular, block, zona, rechazos, sintomas, e1, e2);
 
-
-
-
     }
 
     private static Ciudadano searchCiudadanoBy(String criterio, int posicion){
@@ -149,6 +146,8 @@ public class Archivo {
             while(line != null){
                 String[] x = line.split("\t");
                 if(criterio.equals(x[posicion])){
+                    //Ciudadano newCiudadano = decode(line);
+                    //newCiudadano.initializeEncuentro();
                     return decode(line);
                 }
                 line = br.readLine();
@@ -205,5 +204,7 @@ public class Archivo {
         }
         return lines;
     }
+
+
 
 }

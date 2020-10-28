@@ -4,6 +4,8 @@ import archivos.Archivo;
 import usuarios.Ciudadano;
 
 public class Encuentro {
+    private final String ciud1Cuil;
+    private final String ciud2Cuil;
     Ciudadano ciud1;
     Ciudadano ciud2;
 
@@ -13,11 +15,20 @@ public class Encuentro {
 
                             //Fecha fechaInicio,
     public Encuentro(String cuil1, String cuil2, Fecha fechaFin) {
-        this.ciud1 = Archivo.searchCUIL(cuil1);
-        this.ciud2 = Archivo.searchCUIL(cuil2);
+        //this.ciud1 = Archivo.searchCUIL(cuil1);
+        this.ciud1 = null;
+        this.ciud2 = null;
+
+        this.ciud1Cuil = cuil1;
+        this.ciud2Cuil = cuil2;
         //this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         finDeEfecto = fechaFin.add48hs();
+    }
+    public void initializeCiudadanos(){
+        this.ciud1 = Archivo.searchCUIL(ciud1Cuil);
+        this.ciud2 = Archivo.searchCUIL(ciud2Cuil);
+
     }
 
     public String toString(){

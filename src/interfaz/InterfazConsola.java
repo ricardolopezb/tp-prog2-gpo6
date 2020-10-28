@@ -80,9 +80,9 @@ public class InterfazConsola {
       para una vez que se complete el registro e ingreso:
        */
         System.out.println("********** TraceIt **********");
-        System.out.println("Bienvenido\n");
+        System.out.println("Bienvenido, "+ciudadano.getNombre()+"\n");
         System.out.println("1. Síntomas");
-        System.out.println("2. Reportar contacto cercano (a implementar)");
+        System.out.println("2. Reportar contacto cercano");
         System.out.println("3. Notificaciones\n");
         System.out.println("9. Salir");
 
@@ -91,10 +91,10 @@ public class InterfazConsola {
                 printSintoma();
                 break;
             case 2:
-                printReporteContacto();
+                ciudadano.solicitudDeContacto();
                 break;
             case 3:
-                printNotificaciones();
+                ciudadano.showNotifications();
                 break;
             case 9:
                 ciudadano.overwrite();
@@ -110,7 +110,7 @@ public class InterfazConsola {
     private static void printSintoma() {
         System.out.println("********** TraceIt **********\n");
         System.out.println("1. Reportar sintoma");
-        System.out.println("2. Bajar sintoma"); //chekeado que se dice asi ? xdxd
+        System.out.println("2. Bajar sintoma");
         System.out.println("0. Regresar");
 
         switch (Scanner.getInt("--> ")){
@@ -197,7 +197,7 @@ public class InterfazConsola {
         System.out.println("1. Manejar Ciudadanos");
         System.out.println("2. Notificaciones");
         System.out.println("3. Manejar Eventos");
-        System.out.println("4. Buscar Ciudadanos (a implementar)");
+        System.out.println("4. Buscar Ciudadanos");
         System.out.println("5. Ver Mapa de Brotes (a implementar)\n");
         System.out.println("9. Salir");
 
@@ -212,7 +212,7 @@ public class InterfazConsola {
                 printAdminSubEvents();
                 break;
             case 4:
-                printAdminSubBuscar();
+                admin.buscarCiudadano();
                 break;
             case 5:
                 printAdminMapa();

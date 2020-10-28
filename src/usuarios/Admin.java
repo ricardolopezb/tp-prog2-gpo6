@@ -61,7 +61,6 @@ public class Admin {
 
     }
 
-
     public void agregarCiudadano() {
         String CUIL = MetodosAuxiliares.pedirCUIL();
         System.out.println();
@@ -80,7 +79,6 @@ public class Admin {
 
 
     }
-
 
     public void eliminarCiudadano() {
         int opcion = Scanner.getInt("1. Buscar por CUIL\n2. Buscar por Celular\n--> ");
@@ -105,6 +103,27 @@ public class Admin {
     }*/
 
 
+    }
+
+    public void buscarCiudadano(){
+        System.out.println("Buscar ciudadano por: \n1. CUIL\n2. Celular");
+        Integer seleccion = Scanner.getInt("--> ");
+        Ciudadano buscado = null;
+        switch (seleccion) {
+            case 1:
+                String cuil_de_buscado = Scanner.getString("Ingrese el CUIL del ciudadano:\n--> ");
+                buscado = Archivo.searchCUIL(cuil_de_buscado);
+                break;
+            case 2:
+                String celular_de_buscado = Scanner.getString("Ingrese el Celular del ciudadano:\n--> ");
+                buscado = Archivo.searchCUIL(celular_de_buscado);
+                break;
+            default:
+                System.out.println("Ingrese una opcion valida");
+                buscarCiudadano();
+        }
+
+       buscado.printCiudadano();
     }
 }
 
