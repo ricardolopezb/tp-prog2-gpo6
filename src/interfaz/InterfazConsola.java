@@ -75,7 +75,7 @@ public class InterfazConsola {
     }
 
     //*************************** entrada del case 1 y 2 **************************************************//
-    private static void printLogeoExistoso() { //para ingreso por CUIL o celular
+    public static void printLogeoExistoso() { //para ingreso por CUIL o celular
       /*
       para una vez que se complete el registro e ingreso:
        */
@@ -92,6 +92,7 @@ public class InterfazConsola {
                 break;
             case 2:
                 ciudadano.solicitudDeContacto();
+                printLogeoExistoso();
                 break;
             case 3:
                 ciudadano.showNotifications();
