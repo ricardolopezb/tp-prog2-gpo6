@@ -98,7 +98,7 @@ public class InterfazConsola {
     private static void printSintoma() {
         System.out.println("********** TraceIt **********\n");
         System.out.println("1. Reportar sintoma");
-        System.out.println("2. Bajar sintoma"); //chekeado que se dice asi ? xdxd
+        System.out.println("2. Bajar sintoma");
         System.out.println("0. Regresar");
 
         switch (Scanner.getInt("--> ")){
