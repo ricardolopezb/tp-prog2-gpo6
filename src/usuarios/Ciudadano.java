@@ -222,7 +222,7 @@ public class Ciudadano {
 
         }
         Fecha fechaDeEncuentro = MetodosAuxiliares.pedirFecha();
-        ContactNotification notifDeContacto = new ContactNotification(this, buscado, fechaDeEncuentro);
+        ContactNotification notifDeContacto = new ContactNotification(buscado, this, fechaDeEncuentro);
         notifDeContacto.send();
 
     }
@@ -252,9 +252,12 @@ public class Ciudadano {
         } else{
             if(notificacion instanceof ContactNotification){
                 notificacion.printNotification();
+                notificacion.deleteNotification();
                 ((ContactNotification) notificacion).getResponse();
             } else{
                 notificacion.printNotification();
+                notificacion.deleteNotification();
+
             }
 
         }
@@ -264,32 +267,6 @@ public class Ciudadano {
 
 
 
-    public void sendSolicitudRechazada(Ciudadano requester) {
-        String toSend = "Su solicitud de contacto ha sido negada por " + this.getNombre();
-        Archivo.writeFile(toSend, "Notificaciones.txt");
-    }
-
-    public void sendSolicitudAceptada(Ciudadano requester){
-        String toSend = "Su solicitud de contacto ha sido aceptada por " + this.getNombre();
-        Archivo.writeFile(toSend, "Notificaciones.txt");
-    }
-
-
-    private String lookUpNotification(){
-        try(BufferedReader br = new BufferedReader(new FileReader("src\\archivos\\Notificaciones.txt"));){
-            String line = br.readLine();
-            while(line != null){
-                if(line.startsWith(this.CUIL)){
-                    return line;
-                }
-                line = br.readLine();
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return "-";
-    }
 
     public Encuentro getAnterior() {
         return anterior;

@@ -80,10 +80,10 @@ public class InterfazConsola {
                 printSintoma();
                 break;
             case 2:
-                printReporteContacto();
+                ciudadano.solicitudDeContacto();
                 break;
             case 3:
-                printNotificaciones();
+                ciudadano.showNotifications();
                 break;
             case 9:
                 ciudadano.overwrite();

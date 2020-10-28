@@ -6,7 +6,7 @@ public class DeniedContactNotification extends Notification {
 
 
     public DeniedContactNotification(Ciudadano receiver,Ciudadano sender) {
-        super(sender, receiver);
+        super(receiver, sender);
     }
 
     @Override
@@ -22,8 +22,4 @@ public class DeniedContactNotification extends Notification {
 
     }
 
-    @Override
-    public void writeNotification() {
-
-    }
 }

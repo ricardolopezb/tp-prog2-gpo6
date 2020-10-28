@@ -27,9 +27,14 @@ public abstract class Notification {
     }
 
     public abstract String serialize();
+    public void deleteNotification(){
+        Archivo.removeLine(this.serialize(), "Notificaciones.txt");
+    }
 
     public abstract void printNotification();
-    public abstract void writeNotification();
+    public void send(){
+        Archivo.writeFile(this.serialize(), "Notificaciones.txt");
+    }
 
     public static Notification deserialize(String toDeserialize){
         String[]splitLine = toDeserialize.split("@");
@@ -43,10 +48,10 @@ public abstract class Notification {
             case "negacion":
                 DeniedContactNotification notification1 = new DeniedContactNotification(Archivo.searchCUIL(splitLine[1]), Archivo.searchCUIL(splitLine[2]));
                 return notification1;
+            case "accept":
+                AcceptedContactNotification notification2 = new AcceptedContactNotification(Archivo.searchCUIL(splitLine[1]), Archivo.searchCUIL(splitLine[2]));
+                return notification2;
         }
-
-
-
 
         return null;
     }

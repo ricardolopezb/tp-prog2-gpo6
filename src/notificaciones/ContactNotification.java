@@ -22,12 +22,6 @@ public class ContactNotification extends Notification {
         return serialized;
     }
 
-    public void send(){
-        Archivo.writeFile(this.serialize(), "Notificaciones.txt");
-    }
-
-
-
 
     @Override
     public void printNotification() {
@@ -58,19 +52,14 @@ public class ContactNotification extends Notification {
                     sender.setAnte_anterior(sender.getAnterior());
                     sender.setAnterior(nuevoEncuentro);
                 }
-                receiver.sendSolicitudAceptada(sender);
+                AcceptedContactNotification notifAceptada = new AcceptedContactNotification(receiver, sender);
+                notifAceptada.send();
             case 'n':
                 receiver.addSolicitudRechazada();
                 sender.addSolicitudRechazada();
-                receiver.sendSolicitudRechazada(sender);
+                DeniedContactNotification notifDeNegacion = new DeniedContactNotification(receiver, sender);
+                notifDeNegacion.send();
         }
     }
 
-
-
-
-    @Override
-    public void writeNotification() {
-
-    }
 }
