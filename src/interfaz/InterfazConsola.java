@@ -182,7 +182,7 @@ public class InterfazConsola {
         System.out.println("1. Manejar Ciudadanos");
         System.out.println("2. Notificaciones");
         System.out.println("3. Manejar Eventos");
-        System.out.println("4. Buscar Ciudadanos (a implementar)");
+        System.out.println("4. Buscar Ciudadanos");
         System.out.println("5. Ver Mapa de Brotes (a implementar)\n");
         System.out.println("9. Salir");
 
@@ -197,7 +197,7 @@ public class InterfazConsola {
                 printAdminSubEvents();
                 break;
             case 4:
-                printAdminSubBuscar();
+                admin.buscarCiudadano();
                 break;
             case 5:
                 printAdminMapa();

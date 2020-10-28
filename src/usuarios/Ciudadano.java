@@ -84,7 +84,12 @@ public class Ciudadano {
     }
 
     public void printCiudadano(){
-        //Un metodo que printea los datos de un ciudadano en especifico. Para que lo use el admin en el metodo para obtener info.
+        System.out.println("Nombre: " + this.nombre);
+        System.out.println("CUIL: " + this.CUIL);
+        System.out.println("Celular: " + this.celular);
+        System.out.println("Zona: " + this.zona);
+
+
     }
 
     public String getNombre() {
