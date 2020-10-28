@@ -129,6 +129,15 @@ public class Ciudadano {
         }
     }
 
+    public void initializeEncuentro(){
+        if(this.ante_anterior != null){
+            ante_anterior.initializeCiudadanos();
+        }
+        if(this.anterior != null){
+            anterior.initializeCiudadanos();
+        }
+    }
+
     public String getCUIL(){
         return this.CUIL;
     }

@@ -4,8 +4,8 @@ import usuarios.Ciudadano;
 
 public class AcceptedContactNotification extends Notification {
 
-    public AcceptedContactNotification(Ciudadano receiver, Ciudadano sender) {
-        super(receiver, sender);
+    public AcceptedContactNotification(Ciudadano sender, Ciudadano receiver) {
+        super(sender,receiver);
     }
 
     @Override

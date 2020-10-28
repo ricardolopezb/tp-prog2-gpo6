@@ -5,8 +5,8 @@ import usuarios.Ciudadano;
 public class DeniedContactNotification extends Notification {
 
 
-    public DeniedContactNotification(Ciudadano receiver,Ciudadano sender) {
-        super(receiver, sender);
+    public DeniedContactNotification(Ciudadano sender, Ciudadano receiver) {
+        super(sender,receiver);
     }
 
     @Override

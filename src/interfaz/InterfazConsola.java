@@ -69,9 +69,9 @@ public class InterfazConsola {
     //*************************** entrada del case 1 y 2 **************************************************//
     private static void printLogeoExistoso() { //para ingreso por CUIL o celular
         System.out.println("********** TraceIt **********");
-        System.out.println("Bienvenido\n");
+        System.out.println("Bienvenido, "+ciudadano.getNombre()+"\n");
         System.out.println("1. Síntomas");
-        System.out.println("2. Reportar contacto cercano (a implementar)");
+        System.out.println("2. Reportar contacto cercano");
         System.out.println("3. Notificaciones\n");
         System.out.println("9. Salir");
 

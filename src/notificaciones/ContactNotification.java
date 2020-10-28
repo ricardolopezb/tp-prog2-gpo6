@@ -54,6 +54,7 @@ public class ContactNotification extends Notification {
                 }
                 AcceptedContactNotification notifAceptada = new AcceptedContactNotification(receiver, sender);
                 notifAceptada.send();
+                break;
             case 'n':
                 receiver.addSolicitudRechazada();
                 sender.addSolicitudRechazada();
