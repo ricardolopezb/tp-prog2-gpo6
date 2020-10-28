@@ -1,9 +1,9 @@
-fiebre
-tos
-dolor de garganta
-dificultad respiratoria
-dolor muscular
-dolor de cabeza
-diarrea
-vómitos
-pérdida de gusto/olfato
+Fiebre
+Tos
+Dolor de garganta
+Dificultad respiratoria
+Dolor muscular
+Dolor de cabeza
+Diarrea
+Vómitos
+Pérdida de gusto/olfato

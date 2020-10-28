@@ -32,6 +32,7 @@ public class Check {
         }
 
     public static boolean checkAnses(String CUIL, String celular){ //este metodo se usa solo en el registro
+        //checkea que el cuil y el numero esten en el .txt y que esten juntos.
         try{
             BufferedReader br = new BufferedReader(new FileReader("src\\archivos\\BaseAnses.txt"));
             String line = br.readLine();
@@ -50,7 +51,6 @@ public class Check {
         System.out.println("jaja no entro estupido xdd");
 
         return false;
-        //un metodo para chequear que el cuil y el numero esten en el .txt y que esten juntos.
     }
 
     public static boolean checkPassAdmin(String pass){

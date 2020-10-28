@@ -1,5 +1,7 @@
 package interfaz;
 
+import archivos.Archivo;
+import entidades.Evento;
 import usuarios.Admin;
 import usuarios.Ciudadano;
 import util.Check;
@@ -7,8 +9,13 @@ import util.MetodosAuxiliares;
 import util.Scanner;
 
 public class InterfazConsola {
-    public static void main(String[] args) {
+    static Admin admin = new Admin();
+    static Ciudadano ciudadano;
 
+    public static void main(String[] args) {
+    /*
+        "menu de entrada e interacicon
+     */
         Admin admin = new Admin();
         System.out.println("********** TraceIt **********\n");
         //int eleccion1 = printInicio();
@@ -18,18 +25,27 @@ public class InterfazConsola {
                 //clearScreen();
                 System.out.println("Ingrese su CUIL");
                 String cuil_ingresado = Scanner.getString("--> ");
-                printLogeoExistoso();
+                if(Archivo.checkCuilInLocal(cuil_ingresado)) {
+                    ciudadano = Archivo.searchCUIL(cuil_ingresado);
+                    printLogeoExistoso();
+
+                }
                 break;
 
             case 2:
                 //clearScreen();
                 System.out.println("Ingrese su Celular");
                 String cel_ingresado = Scanner.getString("--> ");
-                printLogeoExistoso();
+                if(Archivo.checkCelInLocal(cel_ingresado)) {
+                    ciudadano = Archivo.searchCelular(cel_ingresado);
+                    printLogeoExistoso();
+                }
                 break;
             case 3:
                 //clearScreen();
                 admin.agregarCiudadano();
+                MetodosAuxiliares.delay(1500);
+                main(args);
                 break;
 
             case 9:
@@ -44,8 +60,12 @@ public class InterfazConsola {
     }
 
     private static void printPassAdmin() {
+        /*
+        validacion de contraseña de administrador
+         */
         String pass = Scanner.getString("Ingrese su contraseña: ");
         if(Check.checkPassAdmin(pass) ){
+            // si la contraseña es valida accede al menu especifico
             printAdminMenu();
         }else {
             System.out.println("Datos invalidos");
@@ -55,24 +75,33 @@ public class InterfazConsola {
     }
 
     //*************************** entrada del case 1 y 2 **************************************************//
-    private static void printLogeoExistoso() { //para ingreso por CUIL o celular
+    public static void printLogeoExistoso() { //para ingreso por CUIL o celular
+      /*
+      para una vez que se complete el registro e ingreso:
+       */
         System.out.println("********** TraceIt **********");
-        System.out.println("Bienvenido\n");
+        System.out.println("Bienvenido, "+ciudadano.getNombre()+"\n");
         System.out.println("1. Síntomas");
-        System.out.println("2. Reportar contacto cercano (a implementar)");
-        System.out.println("3. Notificaciones");
+        System.out.println("2. Reportar contacto cercano");
+        System.out.println("3. Notificaciones\n");
+        System.out.println("9. Salir");
 
         switch (Scanner.getInt("--> ")) {
             case 1:
                 printSintoma();
                 break;
             case 2:
-                printReporteContacto();
+                ciudadano.solicitudDeContacto();
+                printLogeoExistoso();
                 break;
             case 3:
-                printNotificaciones();
+                ciudadano.showNotifications();
                 break;
+            case 9:
+                ciudadano.overwrite();
+                System.exit(0);
             default:
+                System.out.println("Por favor, ingrese una opcion válida.");
                 printLogeoExistoso();
                 break;
         }
@@ -81,8 +110,8 @@ public class InterfazConsola {
 
     private static void printSintoma() {
         System.out.println("********** TraceIt **********\n");
-        System.out.println("1. Reportar sintoma (a implementar)");
-        System.out.println("2. Bajar sintoma (a implementar)"); //chekeado que se dice asi ? xdxd
+        System.out.println("1. Reportar sintoma");
+        System.out.println("2. Bajar sintoma");
         System.out.println("0. Regresar");
 
         switch (Scanner.getInt("--> ")){
@@ -101,10 +130,11 @@ public class InterfazConsola {
         }
     }
     private static void darAltaSintoma() {
-        //a implementar
+        ciudadano.agregarSintoma();
     }
     private static void darBajaSintoma(){
-        //a implementar
+        ciudadano.removerSintoma();
+
     }
 
 
@@ -161,12 +191,16 @@ public class InterfazConsola {
 
 //******************************* menu del administrador ****************************************//
     public static void printAdminMenu(){
+        /*
+        para administrador:
+         */
         System.out.println("********** TraceIt **********\n");
         System.out.println("1. Manejar Ciudadanos");
         System.out.println("2. Notificaciones");
         System.out.println("3. Manejar Eventos");
-        System.out.println("4. Buscar Ciudadanos (a implementar)");
-        System.out.println("5. Ver Mapa de Brotes (a implementar)");
+        System.out.println("4. Buscar Ciudadanos");
+        System.out.println("5. Ver Mapa de Brotes (a implementar)\n");
+        System.out.println("9. Salir");
 
         switch(Scanner.getInt("--> ")){
             case 1:
@@ -179,11 +213,13 @@ public class InterfazConsola {
                 printAdminSubEvents();
                 break;
             case 4:
-                printAdminSubBuscar();
+                admin.buscarCiudadano();
                 break;
             case 5:
                 printAdminMapa();
                 break;
+            case 9:
+                System.exit(0);
 
             default:
                 printAdminMenu();
@@ -194,6 +230,9 @@ public class InterfazConsola {
 
 
     public static void printAdminSubManejar() {
+        /*
+        manejo de los ciudadanos
+         */
         //bloquear / desbloquear / agregar / eliminar
         System.out.println("********** TraceIt **********\n");
         System.out.println("1. Desbloquear Ciudadanos (a implementar)");
@@ -215,9 +254,14 @@ public class InterfazConsola {
                 admin.agregarCiudadano();
                 break;
             case 3:
+                //borra all:(
                 admin.eliminarCiudadano();
                 break;
             default:
+                /*
+                para que imprima nuevamente el menu de manejo de ciud
+                 */
+                System.out.println("Por favor, ingrese una opcion válida.");
                 printAdminSubManejar();
                 break;
         }
@@ -227,6 +271,9 @@ public class InterfazConsola {
 
 
     public static void printAdminSubNotif() {
+        /*
+        para tener acceso a las notificaciones
+         */
         //brotes / usuarios bloqueados
         System.out.println("********** TraceIt **********\n");
         System.out.println("1. Notificaciones de brote por zona (a implementar)");
@@ -258,13 +305,16 @@ public class InterfazConsola {
 
 
     public static void printAdminSubEvents() {
+        /*
+        para el manejo de eventos
+         */
         //crear / eliminar / ver E / top 3 eventos por zona
         //manejo de eventos
         System.out.println("********** TraceIt **********\n");
         System.out.println("Manejo de eventos");
-        System.out.println("1. Generar evento (a implementar)");
-        System.out.println("2. Eliminiar evento (a implementar)");
-        System.out.println("3. Ver eventos existentes (a implementar)");
+        System.out.println("1. Generar evento");
+        System.out.println("2. Eliminar evento");
+        System.out.println("3. Ver eventos existentes");
         System.out.println("4. Ver top de eventos por zona (a implementar)");
         System.out.println("\n0. Regresar");
 
@@ -273,13 +323,13 @@ public class InterfazConsola {
                 printAdminMenu();
                 break;
             case 1:
-                printGenerateEvent();
+                admin.generarEvento();
                 break;
             case 2:
-                printDeleteEvent();
+                admin.eliminarEvento();
                 break;
             case 3:
-                printExistEvent();
+                Archivo.printFileLines("SintomasGenerados.txt");
                 break;
             case 4:
                 printTopEvent();
@@ -319,6 +369,9 @@ public class InterfazConsola {
 
 
     public static int printInicio(){
+        /*
+        menu inicial para el ingreso y registro, tanto como ciudadano como administrador
+         */
         System.out.println("1. Ingresar con CUIL");
         System.out.println("2. Ingresar con Celular");
         System.out.println("3. Registrarse\n");

@@ -6,7 +6,6 @@ public class Evento {
 
     public Evento(String nombre){
         this.nombre = nombre;
-
     }
     public String getNombre() {
         return nombre;
