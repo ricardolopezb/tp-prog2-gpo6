@@ -28,27 +28,40 @@ public class Admin {
         ArrayList<String> sintomas = Archivo.collectFileLines("SintomasTotales.txt");
         Integer seleccion = Scanner.getInt("Seleccione el sintoma a agregar\n--> ");
         switch(seleccion){
-            case 1:
-                    Archivo.writeFile(sintomas.get(0), "SintomasGenerados.txt");
+            case 1: Archivo.writeFile(sintomas.get(0), "SintomasGenerados.txt");
+                    InterfazConsola.printAdminSubEvents();
                     break;
             case 2: Archivo.writeFile(sintomas.get(1), "SintomasGenerados.txt");
+                    InterfazConsola.printAdminSubEvents();
                     break;
-            case 3:Archivo.writeFile(sintomas.get(2), "SintomasGenerados.txt");
+            case 3: Archivo.writeFile(sintomas.get(2), "SintomasGenerados.txt");
+                    InterfazConsola.printAdminSubEvents();
                     break;
-            case 4:Archivo.writeFile(sintomas.get(3), "SintomasGenerados.txt");
+            case 4: Archivo.writeFile(sintomas.get(3), "SintomasGenerados.txt");
+                    InterfazConsola.printAdminSubEvents();
                     break;
-            case 5:Archivo.writeFile(sintomas.get(4), "SintomasGenerados.txt");
+            case 5: Archivo.writeFile(sintomas.get(4), "SintomasGenerados.txt");
+                    InterfazConsola.printAdminSubEvents();
                     break;
-            case 6:Archivo.writeFile(sintomas.get(5), "SintomasGenerados.txt");
+            case 6: Archivo.writeFile(sintomas.get(5), "SintomasGenerados.txt");
+                    InterfazConsola.printAdminSubEvents();
                     break;
-            case 7:Archivo.writeFile(sintomas.get(6), "SintomasGenerados.txt");
+            case 7: Archivo.writeFile(sintomas.get(6), "SintomasGenerados.txt");
+                    InterfazConsola.printAdminSubEvents();
                     break;
             case 8: Archivo.writeFile(sintomas.get(7), "SintomasGenerados.txt");
+                    InterfazConsola.printAdminSubEvents();
                     break;
             case 9: Archivo.writeFile(sintomas.get(8), "SintomasGenerados.txt");
+                    InterfazConsola.printAdminSubEvents();
                     break;
 
+            default:
+                System.out.println("Ingrese una opcion valida");
+                generarEvento();
+
         }
+        generarEvento();
     }
 
     public void eliminarEvento(){
@@ -125,6 +138,8 @@ public class Admin {
 
        buscado.printCiudadano();
     }
+
+
 }
 
 
