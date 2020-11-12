@@ -39,11 +39,9 @@ public class Archivo {
         }
     }
 
-
     public static void removeLocal(Ciudadano c){
         removeLine(c.getCUIL(), "BaseLocal.txt");
     }
-
 
     public static boolean checkCuilInLocal(String cuil){
         return searchCUIL(cuil) != null;
@@ -61,7 +59,6 @@ public class Archivo {
             e.printStackTrace();
         }
     }
-
 
     public static Ciudadano decode(String info){
         //CUIL\t Celular\t Bloqueado\t Zona\t Rechazos\t Sintoma1,Sintoma2,Sintoma3\t    (2002049954(CUIL CIUD 1),1924894392(CUIL CIUD 2),100920(Fecha de Inicio en numero)
@@ -94,13 +91,15 @@ public class Archivo {
             e1 = null;
         } else{
             String[] encuentro1Split = encuentro1NoSplit.split(",");
-            //String[] fch1 = encuentro1Split[2].split("-");
-            //int[]f1 = new int[3];;
-            //for (int i = 0; i < fch1.length ; i++) {
-            //    f1[i] = Integer.parseInt(fch1[i]);
-            //}
-            //Fecha fecha1 = new Fecha(f1[0], f1[1], f1[2]);
+            /*
+            String[] fch1 = encuentro1Split[2].split("-");
+            int[]f1 = new int[3];;
+            for (int i = 0; i < fch1.length ; i++) {
+                f1[i] = Integer.parseInt(fch1[i]);
+            }
+            Fecha fecha1 = new Fecha(f1[0], f1[1], f1[2]);
 
+ */
 
             String[] fch2 = encuentro1Split[3].split("-");
             int[]f2 = new int[3];
@@ -140,6 +139,7 @@ public class Archivo {
 
     }
 
+    //busqueda de ciudadano por CUIL o celular
     private static Ciudadano searchCiudadanoBy(String criterio, int posicion){
         try(BufferedReader br = new BufferedReader(new FileReader("src\\archivos\\BaseLocal.txt"));){
             String line = br.readLine();
@@ -167,9 +167,8 @@ public class Archivo {
         return searchCiudadanoBy(cel, 1);
     }
 
+    //metodo para abstraer escribir en un archivo.
     public static void writeFile(String toWrite, String file){
-        //metodo para abstraer escribir en un archivo.
-
         String directory = "src\\archivos\\" + file;
         try(BufferedWriter br = new BufferedWriter(new FileWriter(directory, true));){
             br.write(toWrite + "\n");

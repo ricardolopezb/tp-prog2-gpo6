@@ -27,7 +27,7 @@ public class MetodosAuxiliares {
             return CUIL;
         } else {
             System.out.println("Datos Invalidos");
-            MetodosAuxiliares.delay(3000);
+            MetodosAuxiliares.delay(1500);
             InterfazConsola.clearScreen();
             pedirCUIL();
         }
