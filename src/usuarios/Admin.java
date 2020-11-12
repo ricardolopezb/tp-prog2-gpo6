@@ -29,30 +29,39 @@ public class Admin {
         Integer seleccion = Scanner.getInt("Seleccione el sintoma a agregar\n--> ");
         switch(seleccion){
             case 1: Archivo.writeFile(sintomas.get(0), "SintomasGenerados.txt");
+                    System.out.println("Evento generado con exito\n");
                     InterfazConsola.printAdminSubEvents();
                     break;
             case 2: Archivo.writeFile(sintomas.get(1), "SintomasGenerados.txt");
+                    System.out.println("Evento generado con exito\n");
                     InterfazConsola.printAdminSubEvents();
                     break;
             case 3: Archivo.writeFile(sintomas.get(2), "SintomasGenerados.txt");
+                    System.out.println("Evento generado con exito\n");
                     InterfazConsola.printAdminSubEvents();
                     break;
             case 4: Archivo.writeFile(sintomas.get(3), "SintomasGenerados.txt");
+                    System.out.println("Evento generado con exito\n");
                     InterfazConsola.printAdminSubEvents();
                     break;
             case 5: Archivo.writeFile(sintomas.get(4), "SintomasGenerados.txt");
+                    System.out.println("Evento generado con exito\n");
                     InterfazConsola.printAdminSubEvents();
                     break;
             case 6: Archivo.writeFile(sintomas.get(5), "SintomasGenerados.txt");
+                    System.out.println("Evento generado con exito\n");
                     InterfazConsola.printAdminSubEvents();
                     break;
             case 7: Archivo.writeFile(sintomas.get(6), "SintomasGenerados.txt");
+                    System.out.println("Evento generado con exito\n");
                     InterfazConsola.printAdminSubEvents();
                     break;
             case 8: Archivo.writeFile(sintomas.get(7), "SintomasGenerados.txt");
+                    System.out.println("Evento generado con exito\n");
                     InterfazConsola.printAdminSubEvents();
                     break;
             case 9: Archivo.writeFile(sintomas.get(8), "SintomasGenerados.txt");
+                    System.out.println("Evento generado con exito\n");
                     InterfazConsola.printAdminSubEvents();
                     break;
 
@@ -71,7 +80,6 @@ public class Admin {
         if(seleccion > 0 && seleccion <= sintomasGenerados.size()){
             Archivo.removeLine(sintomasGenerados.get(seleccion-1), "SintomasGenerados.txt");
         }
-
     }
 
     public void agregarCiudadano() {
@@ -82,11 +90,11 @@ public class Admin {
         if (Check.checkAnses(CUIL, celular)) {
             Archivo.addToLocal(new Ciudadano(CUIL, celular));
             System.out.println("Ciudadano registrado con exito.");
-
+            InterfazConsola.printAdminSubManejar();
         } else {
             System.out.println("Datos Invalidos");
-            MetodosAuxiliares.delay(3000);
-            InterfazConsola.clearScreen();
+            MetodosAuxiliares.delay(1500);
+          //  InterfazConsola.clearScreen();
             agregarCiudadano();
         }
 
