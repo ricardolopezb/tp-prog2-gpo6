@@ -227,7 +227,7 @@ public class Ciudadano {
                 buscado = Archivo.searchCUIL(celular_de_buscado);
                 break;
             default:
-                System.out.println("Ingrese una opcion valida");
+                System.out.println("Ingrese una opcion valida\n");
                 //clearScreen();
                 solicitudDeContacto();
 
@@ -235,6 +235,8 @@ public class Ciudadano {
         Fecha fechaDeEncuentro = MetodosAuxiliares.pedirFecha();
         ContactNotification notifDeContacto = new ContactNotification(buscado, this, fechaDeEncuentro);
         notifDeContacto.send();
+        System.out.println("Contacto realizado con exito\n");
+        InterfazConsola.printLogeoExistoso();
 
     }
 
@@ -259,7 +261,7 @@ public class Ciudadano {
     public void showNotifications(){
         Notification notificacion = checkNotifications();
         if (notificacion == null){
-            System.out.println("No hay notificaciones para mostrar...");
+            System.out.println("No hay notificaciones para mostrar...\n");
             InterfazConsola.printLogeoExistoso();
         } else{
             if(notificacion instanceof ContactNotification){
@@ -271,7 +273,7 @@ public class Ciudadano {
                 notificacion.deleteNotification();
 
             }
-
+            InterfazConsola.printLogeoExistoso();
         }
 
 
