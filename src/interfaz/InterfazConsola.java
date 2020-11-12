@@ -91,7 +91,6 @@ public class InterfazConsola {
                 break;
             case 2:
                 ciudadano.solicitudDeContacto();
-                printLogeoExistoso();
                 break;
             case 3:
                 ciudadano.showNotifications();
@@ -105,7 +104,6 @@ public class InterfazConsola {
                 break;
         }
     }
-
 
     private static void printSintoma() {
         System.out.println("********** TraceIt **********\n");
@@ -130,60 +128,15 @@ public class InterfazConsola {
     }
     private static void darAltaSintoma() {
         ciudadano.agregarSintoma();
+        MetodosAuxiliares.delay(1500);
+        printSintoma();
     }
     private static void darBajaSintoma(){
         ciudadano.removerSintoma();
+        MetodosAuxiliares.delay(1500);
+        printSintoma();
     }
 
-
-    private static void printReporteContacto() {
-        //reportar contacto con otro ciudadano
-    }
-
-
-
-    private static void printNotificaciones() {
-        /*
-            notif de brote
-            hubo contacto con persona de 2 sintomas
-            tuvo contacto con x persona? si / no
-         */
-        System.out.println("********** TraceIt **********\n");
-        System.out.println("Desea ver notificaciones de:");
-        System.out.println("    1. Brotes (a implementar)");
-        System.out.println("    2. Contactos recibidos (a implementar)");
-        System.out.println("    3. Contactos realizados (a implementar)");// estan chekeados esos nombes?
-        System.out.println("    0. Regresar");
-
-        switch (Scanner.getInt("--> ")) {
-            case 0:
-                printLogeoExistoso();
-                break;
-            case 1:
-                printBrotes();
-                break;
-            case 2:
-                printContactoRecibidos();
-                break;
-            case 3:
-                printContactoRealizado();
-                break;
-            default:
-                printNotificaciones();
-                break;
-        }
-    }
-    private static void printBrotes(){
-        //brote en zona concurrida
-    }
-    private static void printContactoRecibidos(){
-        // recibe la confirmacion de contacto con otro ciudadano, por si o no
-
-    }
-    private static void printContactoRealizado() {
-        // ingrersa que tuvo contacto con otro ciudadano en x zona
-        // el otro ciudadano la recibe por printContactoRecibido()
-    }
 
 //******************************* cierre entrada 1 y 2 ******************************************//
 
