@@ -90,7 +90,6 @@ public class Admin {
         if (Check.checkAnses(CUIL, celular)) {
             Archivo.addToLocal(new Ciudadano(CUIL, celular));
             System.out.println("Ciudadano registrado con exito.");
-            InterfazConsola.printAdminSubManejar();
         } else {
             System.out.println("Datos Invalidos");
             MetodosAuxiliares.delay(1500);
