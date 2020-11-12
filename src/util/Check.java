@@ -47,9 +47,7 @@ public class Check {
         } catch (IOException e) {
             e.getMessage();
         }
-
-        System.out.println("jaja no entro estupido xdd");
-
+        System.out.println("no entró al try");
         return false;
     }
 
