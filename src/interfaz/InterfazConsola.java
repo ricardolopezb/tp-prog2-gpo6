@@ -8,6 +8,7 @@ import util.Check;
 import util.MetodosAuxiliares;
 import util.Scanner;
 
+
 public class InterfazConsola {
     static Admin admin = new Admin();
     static Ciudadano ciudadano;
@@ -18,17 +19,15 @@ public class InterfazConsola {
      */
         Admin admin = new Admin();
         System.out.println("********** TraceIt **********\n");
-        //int eleccion1 = printInicio();
         System.out.println("Ingrese el numero de la accion que desee ejecutar:");
         switch (printInicio()) {
             case 1:
-                //clearScreen();
+              //  clearScreen();
                 System.out.println("Ingrese su CUIL");
                 String cuil_ingresado = Scanner.getString("--> ");
                 if(Archivo.checkCuilInLocal(cuil_ingresado)) {
                     ciudadano = Archivo.searchCUIL(cuil_ingresado);
                     printLogeoExistoso();
-
                 }
                 break;
 
@@ -41,6 +40,7 @@ public class InterfazConsola {
                     printLogeoExistoso();
                 }
                 break;
+
             case 3:
                 //clearScreen();
                 admin.agregarCiudadano();
@@ -52,7 +52,6 @@ public class InterfazConsola {
                 //clearScreen();
                 printPassAdmin();
                 break;
-
 
         }
 
@@ -134,7 +133,6 @@ public class InterfazConsola {
     }
     private static void darBajaSintoma(){
         ciudadano.removerSintoma();
-
     }
 
 
@@ -235,9 +233,10 @@ public class InterfazConsola {
          */
         //bloquear / desbloquear / agregar / eliminar
         System.out.println("********** TraceIt **********\n");
-        System.out.println("1. Desbloquear Ciudadanos (a implementar)");
-        System.out.println("2. Agregar Ciudadanos");
-        System.out.println("3. Eliminar Ciudadanos");
+        System.out.println("1. Desbloquear Ciudadano (a implementar)");
+        System.out.println("2. Bloquear Ciudadano  (a implementar)");
+        System.out.println("3. Agregar Ciudadanos");
+        System.out.println("4. Eliminar Ciudadanos");
         System.out.println("\n0. Regresar");
 
         Admin admin = new Admin();
@@ -251,16 +250,16 @@ public class InterfazConsola {
                 //Ciudadano c = mostrarBloqueados();
                 //admin.desbloquear(c);
             case 2:
+                //bloqueo de ciud
+                //admin.bloquear();
+            case 3:
                 admin.agregarCiudadano();
                 break;
-            case 3:
+            case 4:
                 //borra all:(
                 admin.eliminarCiudadano();
                 break;
             default:
-                /*
-                para que imprima nuevamente el menu de manejo de ciud
-                 */
                 System.out.println("Por favor, ingrese una opcion válida.");
                 printAdminSubManejar();
                 break;
@@ -327,28 +326,24 @@ public class InterfazConsola {
                 break;
             case 2:
                 admin.eliminarEvento();
+                printAdminSubEvents();
                 break;
             case 3:
                 Archivo.printFileLines("SintomasGenerados.txt");
+                MetodosAuxiliares.delay(3000);
+                printAdminSubEvents();
                 break;
             case 4:
                 printTopEvent();
                 break;
             default:
+                System.out.println("Ingrese una opcion valida. ");
                 printAdminSubEvents();
                 break;
 
         }
     }
-    private static void printGenerateEvent() {
-        //para crear evento
-    }
-    private static void printDeleteEvent() {
-        //para borrar evento
-    }
-    private static void printExistEvent() {
-        //lista de eventos existentes
-    }
+
     private static void printTopEvent() {
         //top 3 de eventos
     }
@@ -379,14 +374,12 @@ public class InterfazConsola {
         return Scanner.getInt("--> ");
     }
 
-    public static void clearScreen(){
+   public static void clearScreen(){
         for (int i = 0; i < 30 ; i++) {
             System.out.println();
 
         }
     }
-
-
 
 
 }
