@@ -52,14 +52,18 @@ public class ContactNotification extends Notification {
                     sender.setAnte_anterior(sender.getAnterior());
                     sender.setAnterior(nuevoEncuentro);
                 }
-                AcceptedContactNotification notifAceptada = new AcceptedContactNotification(receiver, sender);
+                AcceptedContactNotification notifAceptada = new AcceptedContactNotification(sender, receiver);
                 notifAceptada.send();
+                sender.overwrite();
+                receiver.overwrite();
                 break;
             case 'n':
                 receiver.addSolicitudRechazada();
                 sender.addSolicitudRechazada();
-                DeniedContactNotification notifDeNegacion = new DeniedContactNotification(receiver, sender);
+                DeniedContactNotification notifDeNegacion = new DeniedContactNotification(sender, receiver);
                 notifDeNegacion.send();
+                sender.overwrite();
+                receiver.overwrite();
         }
     }
 

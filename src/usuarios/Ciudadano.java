@@ -79,6 +79,7 @@ public class Ciudadano {
     private void checkSolicitudes() {
         if(this.solicitudesRechazadas == 5){
             this.bloqueado = true;
+            Archivo.writeFile(this.toString(), "CiudadanosBloqueados.txt");
         }
     }
 
@@ -278,9 +279,6 @@ public class Ciudadano {
 
 
     }
-
-
-
 
     public Encuentro getAnterior() {
         return anterior;
