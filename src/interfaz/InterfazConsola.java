@@ -150,7 +150,8 @@ public class InterfazConsola {
         System.out.println("2. Notificaciones");
         System.out.println("3. Manejar Eventos");
         System.out.println("4. Buscar Ciudadanos");
-        System.out.println("5. Ver Mapa de Brotes (a implementar)\n");
+        System.out.println("5. Ver Mapa de Brotes (a implementar)");
+        System.out.println("6. Manejar Acceso\n");
         System.out.println("9. Salir");
 
         switch(Scanner.getInt("--> ")){
@@ -169,6 +170,9 @@ public class InterfazConsola {
             case 5:
                 printAdminMapa();
                 break;
+            case 6:
+                printManejarAcceso();
+                break;
             case 9:
                 System.exit(0);
 
@@ -176,6 +180,33 @@ public class InterfazConsola {
                 printAdminMenu();
                 break;
         }
+
+    }
+
+    public static void printManejarAcceso(){
+        System.out.println("********** TraceIt **********\n");
+        System.out.println("1. Agregar Nueva Contraseña");
+        System.out.println("2. Eliminar Contraseña");
+        System.out.println("\n0. Regresar");
+
+        switch(Scanner.getInt("--> ")){
+            case 1:
+                String newPassword = Scanner.getString("Ingrese la nueva contraseña: \n--> ");
+                admin.agregarPassword(newPassword);
+                printAdminMenu();
+                break;
+            case 2:
+                Archivo.printFileLines("PassAdmin");
+                System.out.println("\nEscriba la contraseña que quiere eliminar:");
+                String passwordToDelete = Scanner.getString("--> ");
+                admin.deletePassword(passwordToDelete);
+                printAdminMenu();
+                break;
+            case 0:
+                printAdminMenu();
+                break;
+        }
+
 
     }
 

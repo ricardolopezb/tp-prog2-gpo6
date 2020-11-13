@@ -99,6 +99,14 @@ public class Admin {
 
 
     }
+    public void agregarPassword(String password){
+        Archivo.writeFile(password, "PassAdmin");
+    }
+    public void deletePassword(String password){
+        Archivo.removeLine(password, "PassAdmin");
+    }
+
+
 
     public void eliminarCiudadano() {
         int opcion = Scanner.getInt("1. Buscar por CUIL\n2. Buscar por Celular\n--> ");
