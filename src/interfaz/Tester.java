@@ -10,9 +10,9 @@ import util.Check;
 
 public class Tester {
     public static void main(String[] args) {
-        Admin admin = new Admin();
+
         Zona pilar = new Zona("Pilar");
-        pilar.printResidentes();
+        pilar.printRanking();
 
 
 
