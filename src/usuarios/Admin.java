@@ -1,6 +1,7 @@
 package usuarios;
 
 import archivos.Archivo;
+import estadistica.StatisticsManager;
 import interfaz.InterfazConsola;
 import util.Check;
 import util.MetodosAuxiliares;
@@ -12,7 +13,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Admin {
+    private StatisticsManager stats;
 
+    public Admin(){
+        this.stats = new StatisticsManager();
+    }
 
     public void desbloquear(Ciudadano c) {
         c.setBloqueado(false);
@@ -176,6 +181,9 @@ public class Admin {
     }
 
 
+    public void rankingZona() {
+        stats.menuZonas();
+    }
 }
 
 

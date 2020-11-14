@@ -150,7 +150,7 @@ public class InterfazConsola {
         System.out.println("2. Notificaciones");
         System.out.println("3. Manejar Eventos");
         System.out.println("4. Buscar Ciudadanos");
-        System.out.println("5. Ver Mapa de Brotes (a implementar)");
+        System.out.println("5. Ver Estadisticas (a implementar)");
         System.out.println("6. Manejar Acceso\n");
         System.out.println("9. Salir");
 
@@ -168,7 +168,7 @@ public class InterfazConsola {
                 admin.buscarCiudadano();
                 break;
             case 5:
-                printAdminMapa();
+                printAdminEstadistica();
                 break;
             case 6:
                 printManejarAcceso();
@@ -181,6 +181,23 @@ public class InterfazConsola {
                 break;
         }
 
+    }
+    public static void printAdminEstadistica(){
+        System.out.println("********** TraceIt **********\n");
+        System.out.println("1. Ver Ranking de Sintomas por Zona");
+        System.out.println("2. Ver listado de Brotes actuales (a implementar)\n");
+        System.out.println("0. Regresar");
+
+        switch (Scanner.getInt("--> ")){
+            case 1:
+                admin.rankingZona();
+                break;
+            case 2:
+                //a implementar con los brotes
+            case 0:
+                printAdminMenu();
+                break;
+        }
     }
 
     public static void printManejarAcceso(){
@@ -217,10 +234,9 @@ public class InterfazConsola {
          */
         //bloquear / desbloquear / agregar / eliminar
         System.out.println("********** TraceIt **********\n");
-        System.out.println("1. Desbloquear Ciudadanos (a implementar)");
-        System.out.println("2. Bloquear Ciudadano  (a implementar)");
-        System.out.println("3. Agregar Ciudadanos");
-        System.out.println("4. Eliminar Ciudadanos");
+        System.out.println("1. Desbloquear Ciudadanos");
+        System.out.println("2. Agregar Ciudadanos");
+        System.out.println("3. Eliminar Ciudadanos");
         System.out.println("\n0. Regresar");
 
         Admin admin = new Admin();
@@ -240,13 +256,11 @@ public class InterfazConsola {
                 break;
 
                 //admin.desbloquear(c);
+
             case 2:
-                //bloqueo de ciud
-                //admin.bloquear();
-            case 3:
                 admin.agregarCiudadano();
                 break;
-            case 4:
+            case 3:
                 //borra all:(
                 admin.eliminarCiudadano();
                 break;

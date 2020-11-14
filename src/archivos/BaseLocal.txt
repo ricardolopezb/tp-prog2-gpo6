@@ -3,5 +3,5 @@
 20193573592	1583644750	false	Pilar	0	,Dolor muscular,Fiebre,Vómitos	null	null
 20640263853	1537740321	false	Pilar	0	,Vómitos,Fiebre	null	null
 27429553946	1548294850	false	Pilar	0	,Fiebre	null	null
-27263946036	1574536485	false	Pilar	1	,	null	null
+27263946036	1574536485	false	Pilar	1	,Diarrea	null	null
 20312424856	1589493645	false	San Isidro	5		null	null

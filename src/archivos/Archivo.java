@@ -23,6 +23,30 @@ public class Archivo {
         addToLocal(ciudadano);
     }
 
+    public static ArrayList<String> listaDeZonas(){
+        ArrayList<String> zonas = new ArrayList<>();
+        try(BufferedReader br = new BufferedReader(new FileReader("src\\archivos\\BaseLocal.txt"));){
+            String line = br.readLine();
+            while(line != null){
+                String[] x = line.split("\t");
+
+                if(!zonas.contains(x[3])){
+                    //Ciudadano newCiudadano = decode(line);
+                    //newCiudadano.initializeEncuentro();
+                    zonas.add(x[3]);
+                }
+                line = br.readLine();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return zonas;
+
+
+
+    }
+
     public static void removeLine(String toRemove, String file){
         ArrayList<String> allLines = collectFileLines(file);
         for(Iterator<String> itr = allLines.iterator(); itr.hasNext();){

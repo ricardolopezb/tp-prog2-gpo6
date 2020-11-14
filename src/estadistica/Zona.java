@@ -5,6 +5,7 @@ import entidades.Evento;
 import usuarios.Ciudadano;
 
 import java.util.*;
+import java.util.Map.*;
 
 public class Zona {
     private final String nombre;
@@ -20,6 +21,9 @@ public class Zona {
 
     }
 
+    public String getNombre() {
+        return nombre;
+    }
 
     public void refreshRanking(){
         this.ranking = getRankingSintomas();
@@ -27,8 +31,12 @@ public class Zona {
     }
 
     public void printRanking(){
-        for (Map.Entry<String, Integer> entry : ranking.entrySet()) {
-            System.out.println(entry.getKey() + "- Veces: "+ entry.getValue());
+        int i = 0;
+        Iterator it = ranking.entrySet().iterator();
+        while(it.hasNext() && i < 3) {
+            Map.Entry obj = (Entry) it.next();
+            System.out.println(obj.getKey() + " - Afectados: "+obj.getValue());
+            i++;
         }
 
     }
