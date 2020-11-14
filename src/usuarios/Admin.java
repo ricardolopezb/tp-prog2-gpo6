@@ -177,7 +177,10 @@ public class Admin {
                 buscarCiudadano();
         }
 
-       buscado.printCiudadano();
+        buscado.printCiudadano();
+
+        MetodosAuxiliares.delay(3000);
+        InterfazConsola.printAdminMenu();
     }
 
 

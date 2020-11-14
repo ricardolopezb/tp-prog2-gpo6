@@ -250,12 +250,9 @@ public class InterfazConsola {
                 System.out.println("Desbloquear Ciudadano? Y/N");
                 char opcion = Character.toLowerCase(Scanner.getChar("-->"));
                 if(opcion == 'n') break;
-                else if(opcion == 'y'){
-                    admin.eliminarBloqueado();
-                }
+                else if(opcion == 'y'){ admin.eliminarBloqueado(); }
                 break;
 
-                //admin.desbloquear(c);
 
             case 2:
                 admin.agregarCiudadano();
