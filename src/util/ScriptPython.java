@@ -1,4 +1,4 @@
-package interfaz;
+package util;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,7 +12,7 @@ public class ScriptPython {
     public void runScript(){
         Process process;
         try{
-            process = Runtime.getRuntime().exec("python C:\\Users\\Ricardo\\Desktop\\LatLongBrowser.py");
+            process = Runtime.getRuntime().exec("python C:\\Users\\Ricardo\\Desktop\\Programas\\Austral\\tp-prog2-gpo6\\src\\archivos\\LatLongBrowser.py");
             mProcess = process;
         }catch(Exception e) {
             System.out.println("Exception Raised" + e.toString());
@@ -26,13 +26,8 @@ public class ScriptPython {
             }
         }catch(IOException e){
             System.out.println("Exception in reading output"+ e.toString());
-            }
         }
     }
-class Yes {
-    public static void main(String[] args) {
-        ScriptPython scriptPython = new ScriptPython();
-        scriptPython.runScript();
-    }
 }
+
 
