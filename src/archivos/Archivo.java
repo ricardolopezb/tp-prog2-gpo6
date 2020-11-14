@@ -107,7 +107,17 @@ public class Archivo {
             sintomas = new ArrayList<>();
             String[] sintomasSplit = sintomasNoSplit.split(",");
             for (String s: sintomasSplit) {
-                sintomas.add(new Evento(s));
+                String[] nombreYFecha = s.split("@");
+                String[] numerosStrFecha = nombreYFecha[1].split("-");
+
+                int[] numerosFechaInt = new int[3];
+
+                for (int i = 0; i < 3 ; i++) {
+                    numerosFechaInt[i] = Integer.parseInt(numerosStrFecha[i]);
+                }
+                Fecha fechaDeEventoGenerado = new Fecha(numerosFechaInt[0],numerosFechaInt[1],numerosFechaInt[2]);
+                sintomas.add(new Evento(nombreYFecha[0],fechaDeEventoGenerado));
+
             }
         }
 

@@ -39,5 +39,11 @@ public class Encuentro {
     }
 
 
-
+    public String getOtherCUIL(Ciudadano ciudadano) {
+        if(ciudadano.getCUIL() == ciud1Cuil){
+            return ciud2Cuil;
+        } else{
+            return ciud1Cuil;
+        }
+    }
 }

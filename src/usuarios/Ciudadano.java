@@ -7,6 +7,7 @@ import entidades.Fecha;
 import interfaz.InterfazConsola;
 import notificaciones.ContactNotification;
 import notificaciones.Notification;
+import notificaciones.SickContactNotification;
 import util.MetodosAuxiliares;
 import util.Scanner;
 
@@ -41,7 +42,7 @@ public class Ciudadano {
         anterior = null;
         ante_anterior = null;
         this.nombre = MetodosAuxiliares.nombreEnAnses(CUIL);
-        sintomas = new ArrayList<Evento>();
+        sintomas = null;
         this.covid = false;
 
 
@@ -100,13 +101,13 @@ public class Ciudadano {
         String strSintomas = "";
         String anteriorStr;
         String posteriorStr;
-        try {
+        if(sintomas == null) {
+            strSintomas = "null";
+        } else{
             for (Evento e : sintomas) {
-                strSintomas += e.getNombre() + ",";
+                strSintomas += e.getNombre() +"@"+ e.getFecha().toString() +",";
 
             }
-        } catch (NullPointerException e){
-            strSintomas = "null";
         }
         //(2002049954(CUIL CIUD 1),1924894392(CUIL CIUD 2),100920(Fecha de Inicio en numero),250920(fecha de fin en numero)
         try{
@@ -130,7 +131,6 @@ public class Ciudadano {
         if(sintomas.containsAll(Archivo.collectFileLines("SintomasGenerados.txt"))){
             this.covid = true;
             overwrite();
-
         }
     }
 
@@ -156,29 +156,26 @@ public class Ciudadano {
         Archivo.printFileLines(file);
         ArrayList<String> sintomasPosibles = Archivo.collectFileLines(file);
         Integer seleccion = Scanner.getInt("Seleccione su sintoma\n--> ");
-        for (String sintomasPosible : sintomasPosibles) {
-            System.out.println(sintomasPosible);
-
-        }
+        Fecha fechaDeSintoma = MetodosAuxiliares.pedirFecha();
         switch(seleccion){
             case 1:
-                sintomas.add(new Evento(sintomasPosibles.get(0)));
+                sintomas.add(new Evento(sintomasPosibles.get(0), fechaDeSintoma));
                 break;
-            case 2: sintomas.add(new Evento(sintomasPosibles.get(1)));
+            case 2: sintomas.add(new Evento(sintomasPosibles.get(1), fechaDeSintoma));
                 break;
-            case 3:sintomas.add(new Evento(sintomasPosibles.get(2)));
+            case 3:sintomas.add(new Evento(sintomasPosibles.get(2), fechaDeSintoma));
                 break;
-            case 4:sintomas.add(new Evento(sintomasPosibles.get(3)));
+            case 4:sintomas.add(new Evento(sintomasPosibles.get(3), fechaDeSintoma));
                 break;
-            case 5:sintomas.add(new Evento(sintomasPosibles.get(4)));
+            case 5:sintomas.add(new Evento(sintomasPosibles.get(4), fechaDeSintoma));
                 break;
-            case 6:sintomas.add(new Evento(sintomasPosibles.get(5)));
+            case 6:sintomas.add(new Evento(sintomasPosibles.get(5), fechaDeSintoma));
                 break;
-            case 7:sintomas.add(new Evento(sintomasPosibles.get(6)));
+            case 7:sintomas.add(new Evento(sintomasPosibles.get(6), fechaDeSintoma));
                 break;
-            case 8: sintomas.add(new Evento(sintomasPosibles.get(7)));
+            case 8: sintomas.add(new Evento(sintomasPosibles.get(7), fechaDeSintoma));
                 break;
-            case 9: sintomas.add(new Evento(sintomasPosibles.get(8)));
+            case 9: sintomas.add(new Evento(sintomasPosibles.get(8), fechaDeSintoma));
                 break;
             default:
                 System.out.println("Ingrese una opcion valida");
@@ -186,6 +183,26 @@ public class Ciudadano {
         checkCovid();
         overwrite();
     }
+
+    private void chequearCercaniaSintomas(){
+        for (int i = 0; i < sintomas.size()-1 ; i++) {
+            if(sintomas.get(-1).getFecha().toString().equals(sintomas.get(i).getFecha().toString())){
+                if(anterior != null){
+                    SickContactNotification sickNotif = new SickContactNotification(Archivo.searchCUIL(anterior.getOtherCUIL(this)), this);
+                }
+                if(ante_anterior != null){
+                    SickContactNotification sickNotif = new SickContactNotification(Archivo.searchCUIL(ante_anterior.getOtherCUIL(this)), this);
+                }
+
+            }
+        }
+
+
+
+
+
+    }
+
 
     public void removerSintoma(){
         System.out.println("Seleccione el Sintoma a remover: ");

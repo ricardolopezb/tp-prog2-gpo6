@@ -51,6 +51,9 @@ public abstract class Notification {
             case "accept":
                 AcceptedContactNotification notification2 = new AcceptedContactNotification(Archivo.searchCUIL(splitLine[1]), Archivo.searchCUIL(splitLine[2]));
                 return notification2;
+            case "covid":
+                SickContactNotification notification3 = new SickContactNotification(Archivo.searchCUIL(splitLine[1]), Archivo.searchCUIL(splitLine[2]));
+                return notification3;
         }
 
         return null;
