@@ -183,6 +183,7 @@ public class Ciudadano {
             default:
                 System.out.println("Ingrese una opcion valida");
         }
+        checkCovid();
         overwrite();
     }
 

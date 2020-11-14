@@ -23,6 +23,28 @@ public class Admin {
         c.setBloqueado(true);
     }
 
+    public void verBloqueados(){
+        ArrayList<String> lineas = Archivo.collectFileLines("CiudadanosBloqueados.txt");
+        int i = 1;
+        if(lineas.size() == 0){
+            System.out.println("No hay ciudadanos bloqueados...");
+            return;
+        }
+        for (String linea : lineas) {
+            Ciudadano ciudadano = Archivo.decode(linea);
+            System.out.println(i+". Nombre: "+ciudadano.getNombre()+" - CUIL: "+ciudadano.getCUIL() + " - Zona: "+ ciudadano.getZona());
+            i++;
+
+        }
+    }
+
+    public void eliminarBloqueado(){
+        String cuilAEliminar = Scanner.getString("Introduzca el CUIL del Ciudadano a desbloquear:\n--> ");
+        Ciudadano ciudadanoADesbloquear = Archivo.searchCUIL(cuilAEliminar);
+        Archivo.removeLine(cuilAEliminar, "CiudadanosBloqueados.txt");
+        desbloquear(ciudadanoADesbloquear);
+    }
+
     public void generarEvento(){
         Archivo.printFileLines("SintomasTotales.txt");
         ArrayList<String> sintomas = Archivo.collectFileLines("SintomasTotales.txt");
@@ -99,14 +121,13 @@ public class Admin {
 
 
     }
+
     public void agregarPassword(String password){
         Archivo.writeFile(password, "PassAdmin");
     }
     public void deletePassword(String password){
         Archivo.removeLine(password, "PassAdmin");
     }
-
-
 
     public void eliminarCiudadano() {
         int opcion = Scanner.getInt("1. Buscar por CUIL\n2. Buscar por Celular\n--> ");

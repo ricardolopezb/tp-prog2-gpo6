@@ -158,6 +158,26 @@ public class Archivo {
         }
         return null;
     }
+    public static ArrayList<Ciudadano> searchCiudadanosPorZona(String zona){
+        ArrayList<Ciudadano> aDevolver = new ArrayList<>();
+        try(BufferedReader br = new BufferedReader(new FileReader("src\\archivos\\BaseLocal.txt"));){
+            String line = br.readLine();
+            while(line != null){
+                String[] x = line.split("\t");
+                if(zona.equals(x[3])){
+                    //Ciudadano newCiudadano = decode(line);
+                    //newCiudadano.initializeEncuentro();
+                    aDevolver.add(decode(line));
+                }
+                line = br.readLine();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return aDevolver;
+
+    }
 
     public static Ciudadano searchCUIL(String CUIL){
         return searchCiudadanoBy(CUIL, 0);

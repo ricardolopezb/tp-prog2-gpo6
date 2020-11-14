@@ -217,7 +217,7 @@ public class InterfazConsola {
          */
         //bloquear / desbloquear / agregar / eliminar
         System.out.println("********** TraceIt **********\n");
-        System.out.println("1. Desbloquear Ciudadano (a implementar)");
+        System.out.println("1. Desbloquear Ciudadanos (a implementar)");
         System.out.println("2. Bloquear Ciudadano  (a implementar)");
         System.out.println("3. Agregar Ciudadanos");
         System.out.println("4. Eliminar Ciudadanos");
@@ -230,8 +230,15 @@ public class InterfazConsola {
                 printAdminMenu();
                 break;
             case 1:
-                //en admin, borra ;(
-                //Ciudadano c = mostrarBloqueados();
+                admin.verBloqueados();
+                System.out.println("Desbloquear Ciudadano? Y/N");
+                char opcion = Character.toLowerCase(Scanner.getChar("-->"));
+                if(opcion == 'n') break;
+                else if(opcion == 'y'){
+                    admin.eliminarBloqueado();
+                }
+                break;
+
                 //admin.desbloquear(c);
             case 2:
                 //bloqueo de ciud
