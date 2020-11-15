@@ -6,49 +6,25 @@ import usuarios.Ciudadano;
 import java.util.ArrayList;
 
 public class BroteChecker {
-    private final ArrayList<Zona> zonas;
-
     // caso positivo:  cuil@zona
     // encuentrosAceptados: sender.getCUIL()+"-"+receiver.getCUIL()
 
 
-    public BroteChecker(ArrayList<Zona> zonasExistentes) {
-        this.zonas = zonasExistentes;
-    }
-
     public Brote checkBrotes(){
         if(!checkQuantity()) return null;
-
-        if(checkPositiveContact()){
-            Brote broteEncontrado = new Brote();
+        Ciudadano intermediarioBrote = checkPositiveContact();
+        if(intermediarioBrote != null){
+            Brote broteEncontrado = new Brote(new Zona(intermediarioBrote.getZona()));
+            return broteEncontrado;
         }
-
-
+        return null;
 
     }
 
 
     private boolean checkQuantity(){
         ArrayList<String> casosPositivos = Archivo.collectFileLines("CasosPositivos.txt");
-        if(casosPositivos.size() < 5) return false;
-
-        for (Zona zona: zonas) {
-            ArrayList<Ciudadano> ciudadanosDeZona = Archivo.searchCiudadanosPorZona(zona.getNombre());
-            int positivos = 0;
-            for (Ciudadano ciudadano : ciudadanosDeZona) {
-                if(ciudadano.getCovid()){
-                    positivos++;
-                }
-            }
-            if(positivos >= 5){
-                return true;
-            }
-
-        }
-
-
-
-        return ;
+        return casosPositivos.size() >= 5;
 
     }
 
@@ -70,15 +46,19 @@ public class BroteChecker {
         return null;
     }
 
-    public boolean checkPositiveContact(){
+    public Ciudadano checkPositiveContact(){
         String[] datosContagio = checkIntermediario();
-        if(datosContagio == null) return false;
+        if(datosContagio == null) return null;
 
         Ciudadano intermediario = Archivo.searchCUIL(datosContagio[0]);
         Ciudadano receptorDeCovid = Archivo.searchCUIL(datosContagio[1]);
         Ciudadano vectorDeCovid = Archivo.searchCUIL(datosContagio[3]);
 
-        return intermediario.getCovid() && vectorDeCovid.getCovid() && receptorDeCovid.getCovid();
+        if(intermediario.getCovid() && vectorDeCovid.getCovid() && receptorDeCovid.getCovid()){
+            return intermediario;
+        }
+
+        return null;
 
 
 

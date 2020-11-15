@@ -8,7 +8,8 @@ import java.util.ArrayList;
 public class StatisticsManager {
 
     ArrayList<Zona> zonas;
-    ArrayList<BroteChecker> brotes;
+    ArrayList<Brote> brotes;
+    BroteChecker broteChecker;
 
     public StatisticsManager(){
         ArrayList<String> zonasString = Archivo.listaDeZonas();
@@ -16,6 +17,7 @@ public class StatisticsManager {
         for (String s : zonasString) {
             zonas.add(new Zona(s));
         }
+        broteChecker = new BroteChecker();
     }
 
     public void menuZonas(){
@@ -24,7 +26,25 @@ public class StatisticsManager {
         zonaSeleccionada.printRanking();
     }
 
+    public void showBrotes(){
+        checkBrotes();
+        System.out.println("Se han encontrado "+ brotes.size() + " brotes.\nDesea verlos? Y/N");
+
+        char seleccion = Character.toLowerCase(Scanner.getChar("--> "));
+        if(seleccion == 'n') return;
+        if(seleccion == 'y'){
+            for (Brote brote: brotes) {
+                System.out.println(brote.toString());
+            }
+        }
+
+    }
+
+
     public void checkBrotes(){
+        Brote broteEncontrado = broteChecker.checkBrotes();
+        if(broteEncontrado == null) return;
+        brotes.add(broteEncontrado);
 
     }
 

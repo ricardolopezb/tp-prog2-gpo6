@@ -51,6 +51,10 @@ public class Admin {
 
     }
 
+    public void verBrotes(){
+        stats.showBrotes();
+    }
+
     public void eliminarBloqueado(){
         String cuilAEliminar = Scanner.getString("Introduzca el CUIL del Ciudadano a desbloquear:\n--> ");
         Ciudadano ciudadanoADesbloquear = Archivo.searchCUIL(cuilAEliminar);

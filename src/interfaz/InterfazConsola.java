@@ -185,7 +185,7 @@ public class InterfazConsola {
     public static void printAdminEstadistica(){
         System.out.println("********** TraceIt **********\n");
         System.out.println("1. Ver Ranking de Sintomas por Zona");
-        System.out.println("2. Ver listado de Brotes actuales (a implementar)\n");
+        System.out.println("2. Ver listado de Brotes actuales\n");
         System.out.println("0. Regresar");
 
         switch (Scanner.getInt("--> ")){
@@ -193,7 +193,8 @@ public class InterfazConsola {
                 admin.rankingZona();
                 break;
             case 2:
-                //a implementar con los brotes
+                admin.verBrotes();
+                break;
             case 0:
                 printAdminMenu();
                 break;
@@ -313,7 +314,7 @@ public class InterfazConsola {
         System.out.println("1. Generar evento");
         System.out.println("2. Eliminar evento");
         System.out.println("3. Ver eventos existentes");
-        System.out.println("4. Ver top de eventos por zona (a implementar)");
+        System.out.println("4. Ver top de eventos por zona");
         System.out.println("\n0. Regresar");
 
         switch (Scanner.getInt("--> "))   {
@@ -333,7 +334,7 @@ public class InterfazConsola {
                 printAdminSubEvents();
                 break;
             case 4:
-                printTopEvent();
+                admin.rankingZona();
                 break;
             default:
                 System.out.println("Ingrese una opcion valida. ");

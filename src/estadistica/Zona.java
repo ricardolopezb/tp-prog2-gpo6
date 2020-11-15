@@ -21,6 +21,8 @@ public class Zona {
 
     }
 
+
+
     public String getNombre() {
         return nombre;
     }
@@ -67,6 +69,16 @@ public class Zona {
                 .forEachOrdered(x -> reverseSortedMap.put(x.getKey(), x.getValue()));
         this.ranking = reverseSortedMap;
 
+    }
+
+    public Integer residentesPositivosCounter(){
+        Integer positivos = 0;
+        for (Ciudadano ciud: residentes) {
+            if(ciud.getCovid()){
+                positivos++;
+            }
+        }
+        return positivos;
     }
 
     public void printResidentes(){
