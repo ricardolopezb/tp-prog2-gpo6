@@ -206,6 +206,9 @@ public class Ciudadano {
 
     }
 
+    public boolean isBloqueado() {
+        return bloqueado;
+    }
 
     public void removerSintoma(){
         System.out.println("Seleccione el Sintoma a remover: ");

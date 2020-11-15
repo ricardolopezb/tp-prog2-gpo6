@@ -27,6 +27,10 @@ public class InterfazConsola {
                 String cuil_ingresado = Scanner.getString("--> ");
                 if(Archivo.checkCuilInLocal(cuil_ingresado)) {
                     ciudadano = Archivo.searchCUIL(cuil_ingresado);
+                    if(ciudadano.isBloqueado()){
+                        System.out.println("Ciudadano Bloqueado. Contacte a Soporte.");
+                        System.exit(0);
+                    }
                     printLogeoExistoso();
                 }
                 break;
@@ -37,6 +41,10 @@ public class InterfazConsola {
                 String cel_ingresado = Scanner.getString("--> ");
                 if(Archivo.checkCelInLocal(cel_ingresado)) {
                     ciudadano = Archivo.searchCelular(cel_ingresado);
+                    if(ciudadano.isBloqueado()){
+                        System.out.println("Ciudadano Bloqueado. Contacte a Soporte.");
+                        System.exit(0);
+                    }
                     printLogeoExistoso();
                 }
                 break;
