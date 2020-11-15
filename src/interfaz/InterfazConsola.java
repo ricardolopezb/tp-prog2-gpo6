@@ -247,13 +247,7 @@ public class InterfazConsola {
                 break;
             case 1:
                 admin.verBloqueados();
-                System.out.println("Desbloquear Ciudadano? Y/N");
-                char opcion = Character.toLowerCase(Scanner.getChar("-->"));
-                if(opcion == 'n') break;
-                else if(opcion == 'y'){
-                    admin.eliminarBloqueado();
-                }
-                break;
+
 
                 //admin.desbloquear(c);
 

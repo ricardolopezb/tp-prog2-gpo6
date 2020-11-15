@@ -41,6 +41,14 @@ public class Admin {
             i++;
 
         }
+        System.out.println("Desbloquear Ciudadano? Y/N");
+        char opcion = Character.toLowerCase(Scanner.getChar("-->"));
+        if(opcion == 'n') return;
+
+        else if(opcion == 'y'){
+            this.eliminarBloqueado();
+        }
+
     }
 
     public void eliminarBloqueado(){
