@@ -18,6 +18,7 @@ public class StatisticsManager {
             zonas.add(new Zona(s));
         }
         broteChecker = new BroteChecker();
+        this.brotes = new ArrayList<>();
     }
 
     public void menuZonas(){
@@ -28,15 +29,22 @@ public class StatisticsManager {
 
     public void showBrotes(){
         checkBrotes();
-        System.out.println("Se han encontrado "+ brotes.size() + " brotes.\nDesea verlos? Y/N");
 
-        char seleccion = Character.toLowerCase(Scanner.getChar("--> "));
-        if(seleccion == 'n') return;
-        if(seleccion == 'y'){
-            for (Brote brote: brotes) {
-                System.out.println(brote.toString());
+        if(brotes.size() == 0){
+            System.out.println("No se han encontrado brotes");
+
+        }
+        else {
+            System.out.println("Se han encontrado "+ brotes.size() + " brotes.\nDesea verlos? Y/N");
+            char seleccion = Character.toLowerCase(Scanner.getChar("--> "));
+            if(seleccion == 'n') return;
+            if(seleccion == 'y'){
+                for (Brote brote: brotes) {
+                    System.out.println(brote.toString());
+                }
             }
         }
+
 
     }
 
