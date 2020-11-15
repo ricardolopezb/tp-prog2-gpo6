@@ -11,7 +11,8 @@ public class Encuentro {
 
     //Fecha fechaInicio;
     Fecha fechaFin;
-    Fecha finDeEfecto;
+    Fecha finMas24hs;
+    Fecha finMas48hs;
 
                             //Fecha fechaInicio,
     public Encuentro(String cuil1, String cuil2, Fecha fechaFin) {
@@ -24,7 +25,8 @@ public class Encuentro {
 
         //this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
-        finDeEfecto = fechaFin.add48hs();
+        this.finMas24hs = fechaFin.add24hs();
+        finMas48hs = fechaFin.add48hs();
     }
     public void initializeCiudadanos(){
         this.ciud1 = Archivo.searchCUIL(ciud1Cuil);
@@ -41,10 +43,22 @@ public class Encuentro {
 
 
     public String getOtherCUIL(Ciudadano ciudadano) {
-        if(ciudadano.getCUIL() == ciud1Cuil){
+        if(ciudadano.getCUIL().equals(ciud1Cuil)){
             return ciud2Cuil;
         } else{
             return ciud1Cuil;
         }
+    }
+
+    public Fecha getFinMas24hs() {
+        return finMas24hs;
+    }
+
+    public Fecha getFinMas48hs() {
+        return finMas48hs;
+    }
+
+    public Fecha getFechaFin() {
+        return fechaFin;
     }
 }

@@ -131,6 +131,7 @@ public class Ciudadano {
         if(sintomas.size() >= 2){
             this.covid = true;
             Archivo.writeFile(this.CUIL+"@"+this.zona, "CasosPositivos.txt");
+            chequearCercaniaSintomas();
             overwrite();
         }
     }
@@ -186,18 +187,36 @@ public class Ciudadano {
     }
 
     private void chequearCercaniaSintomas(){
+        Evento ultimoSintoma = sintomas.get(sintomas.size() - 1);
         for (int i = 0; i < sintomas.size()-1 ; i++) {
-            if(sintomas.get(-1).getFecha().toString().equals(sintomas.get(i).getFecha().toString())){
+            if(ultimoSintoma.getFecha().toString().equals(sintomas.get(i).getFecha().toString())){
                 if(anterior != null){
                     SickContactNotification sickNotif = new SickContactNotification(Archivo.searchCUIL(anterior.getOtherCUIL(this)), this);
+                    sickNotif.send();
                 }
                 if(ante_anterior != null){
                     SickContactNotification sickNotif = new SickContactNotification(Archivo.searchCUIL(ante_anterior.getOtherCUIL(this)), this);
+                    sickNotif.send();
                 }
+                return;
 
             }
 
-            //TERMINAR DE IMPLEMENTAR
+            if(anterior != null){
+                String fechaDeSintoma = ultimoSintoma.getFecha().toString();
+                if (fechaDeSintoma.equals(anterior.getFechaFin().toString()) || fechaDeSintoma.equals(anterior.getFinMas24hs().toString()) || fechaDeSintoma.equals(anterior.getFinMas48hs().toString())) {
+                    SickContactNotification sickNotif = new SickContactNotification(Archivo.searchCUIL(anterior.getOtherCUIL(this)), this);
+                    sickNotif.send();
+                }
+            }
+            if(ante_anterior != null){
+                String fechaDeSintoma = ultimoSintoma.getFecha().toString();
+                if (fechaDeSintoma.equals(ante_anterior.getFechaFin().toString()) || fechaDeSintoma.equals(ante_anterior.getFinMas24hs().toString()) || fechaDeSintoma.equals(anterior.getFinMas48hs().toString())) {
+                    SickContactNotification sickNotif = new SickContactNotification(Archivo.searchCUIL(ante_anterior.getOtherCUIL(this)), this);
+                    sickNotif.send();
+                }
+            }
+
         }
 
 
