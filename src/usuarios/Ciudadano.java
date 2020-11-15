@@ -268,7 +268,7 @@ public class Ciudadano {
                 break;
             case 2:
                 String celular_de_buscado = Scanner.getString("Ingrese el Celular del ciudadano:\n--> ");
-                buscado = Archivo.searchCUIL(celular_de_buscado);
+                buscado = Archivo.searchCelular(celular_de_buscado);
                 break;
             default:
                 System.out.println("Ingrese una opcion valida\n");
