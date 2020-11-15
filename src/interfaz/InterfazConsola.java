@@ -158,7 +158,7 @@ public class InterfazConsola {
         System.out.println("2. Notificaciones");
         System.out.println("3. Manejar Eventos");
         System.out.println("4. Buscar Ciudadanos");
-        System.out.println("5. Ver Estadisticas (a implementar)");
+        System.out.println("5. Ver Estadisticas");
         System.out.println("6. Manejar Acceso\n");
         System.out.println("9. Salir");
 
