@@ -246,7 +246,7 @@ public class InterfazConsola {
                 printAdminMenu();
                 break;
             case 1:
-                admin.verBloqueados();
+                admin.manejarBloqueados();
 
 
                 //admin.desbloquear(c);

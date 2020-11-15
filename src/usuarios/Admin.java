@@ -28,7 +28,7 @@ public class Admin {
         c.setBloqueado(true);
     }
 
-    public void verBloqueados(){
+    public void manejarBloqueados(){
         ArrayList<String> lineas = Archivo.collectFileLines("CiudadanosBloqueados.txt");
         int i = 1;
         if(lineas.size() == 0){

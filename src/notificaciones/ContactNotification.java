@@ -40,7 +40,7 @@ public class ContactNotification extends Notification {
                 Encuentro nuevoEncuentro = new Encuentro(sender.getCUIL(), receiver.getCUIL(), new Fecha(Integer.parseInt(fechaDividida[0]),Integer.parseInt(fechaDividida[1]),Integer.parseInt(fechaDividida[2])));
                 if(receiver.getAnterior() == null){
                     receiver.setAnterior(nuevoEncuentro);
-                } else{
+                } else {
                     receiver.setAnte_anterior(receiver.getAnterior());
                     receiver.setAnterior(nuevoEncuentro);
                 }

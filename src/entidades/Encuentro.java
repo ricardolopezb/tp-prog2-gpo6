@@ -16,11 +16,12 @@ public class Encuentro {
                             //Fecha fechaInicio,
     public Encuentro(String cuil1, String cuil2, Fecha fechaFin) {
         //this.ciud1 = Archivo.searchCUIL(cuil1);
-        this.ciud1 = null;
-        this.ciud2 = null;
-
         this.ciud1Cuil = cuil1;
         this.ciud2Cuil = cuil2;
+        //this.ciud1 = Archivo.searchCUIL(ciud1Cuil);
+        //this.ciud2 = Archivo.searchCUIL(ciud2Cuil);
+
+
         //this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         finDeEfecto = fechaFin.add48hs();
@@ -33,7 +34,7 @@ public class Encuentro {
 
     public String toString(){
         //(2002049954(CUIL CIUD 1),1924894392(CUIL CIUD 2),100920(Fecha de Inicio en numero),250920(fecha de fin en numero)
-        return ciud1.getCUIL()+","+ciud2.getCUIL()+","+fechaFin.toString();
+        return ciud1Cuil+","+ciud2Cuil+","+fechaFin.toString();
 
         //fechaInicio.toString()+","+
     }

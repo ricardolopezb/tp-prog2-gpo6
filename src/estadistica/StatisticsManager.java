@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class StatisticsManager {
 
     ArrayList<Zona> zonas;
+    ArrayList<BroteChecker> brotes;
 
     public StatisticsManager(){
         ArrayList<String> zonasString = Archivo.listaDeZonas();
@@ -21,6 +22,10 @@ public class StatisticsManager {
         displayZonas();
         Zona zonaSeleccionada = seleccionarZona();
         zonaSeleccionada.printRanking();
+    }
+
+    public void checkBrotes(){
+
     }
 
     private void displayZonas(){

@@ -135,7 +135,7 @@ public class Archivo {
 
  */
 
-            String[] fch2 = encuentro1Split[3].split("-");
+            String[] fch2 = encuentro1Split[2].split("-");
             int[]f2 = new int[3];
             for (int i = 0; i < fch2.length ; i++) {
                 f2[i] = Integer.parseInt(fch2[i]);
@@ -158,7 +158,7 @@ public class Archivo {
             //Fecha fecha3 = new Fecha(f3[0], f3[1], f3[2]);
 
 
-            String[] fch4 = encuentro2Split[3].split("-");
+            String[] fch4 = encuentro2Split[2].split("-");
             int[]f4 = new int[3];
             for (int i = 0; i < fch4.length ; i++) {
                 f4[i] = Integer.parseInt(fch4[i]);

@@ -1,11 +1,14 @@
 package notificaciones;
 
+import archivos.Archivo;
 import usuarios.Ciudadano;
+import util.MetodosAuxiliares;
 
 public class AcceptedContactNotification extends Notification {
 
     public AcceptedContactNotification(Ciudadano sender, Ciudadano receiver) {
         super(sender,receiver);
+        Archivo.writeFile(sender.getCUIL()+"-"+receiver.getCUIL(), "EncuentrosAceptados.txt");
     }
 
     @Override
@@ -19,6 +22,7 @@ public class AcceptedContactNotification extends Notification {
     public void printNotification() {
         String toPrint = "Su solicitud de contacto ha sido aceptada por " + sender.getNombre();
         System.out.println(toPrint);
+        MetodosAuxiliares.delay(2000);
 
     }
 }

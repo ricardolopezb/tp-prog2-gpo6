@@ -42,7 +42,7 @@ public class Ciudadano {
         anterior = null;
         ante_anterior = null;
         this.nombre = MetodosAuxiliares.nombreEnAnses(CUIL);
-        sintomas = null;
+        sintomas = new ArrayList<>();
         this.covid = false;
 
 
@@ -101,7 +101,7 @@ public class Ciudadano {
         String strSintomas = "";
         String anteriorStr;
         String posteriorStr;
-        if(sintomas == null) {
+        if(sintomas.size() == 0) {
             strSintomas = "null";
         } else{
             for (Evento e : sintomas) {
@@ -128,8 +128,9 @@ public class Ciudadano {
     }
 
     public void checkCovid(){
-        if(sintomas.containsAll(Archivo.collectFileLines("SintomasGenerados.txt"))){
+        if(sintomas.size() >= 2){
             this.covid = true;
+            Archivo.writeFile(this.CUIL+"@"+this.zona, "CasosPositivos.txt");
             overwrite();
         }
     }
@@ -195,6 +196,8 @@ public class Ciudadano {
                 }
 
             }
+
+            //TERMINAR DE IMPLEMENTAR
         }
 
 
@@ -312,5 +315,9 @@ public class Ciudadano {
 
     public void setAnte_anterior(Encuentro ante_anterior) {
         this.ante_anterior = ante_anterior;
+    }
+
+    public boolean getCovid() {
+        return this.covid;
     }
 }

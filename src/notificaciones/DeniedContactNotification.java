@@ -1,6 +1,7 @@
 package notificaciones;
 
 import usuarios.Ciudadano;
+import util.MetodosAuxiliares;
 
 public class DeniedContactNotification extends Notification {
 
@@ -19,6 +20,7 @@ public class DeniedContactNotification extends Notification {
     public void printNotification() {
         String toPrint = "Su solicitud de contacto ha sido negada por " + sender.getNombre();
         System.out.println(toPrint);
+        MetodosAuxiliares.delay(2000);
 
     }
 
