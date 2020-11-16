@@ -73,6 +73,16 @@ public class Archivo {
     public static boolean checkCelInLocal(String celular){
         return searchCelular(celular) != null;
     }
+    public static boolean checkCUILInPositivos(String CUIL){
+        ArrayList<String> lineas = collectFileLines("CasosPositivos.txt");
+        for (String linea : lineas) {
+            if(linea.startsWith(CUIL)){
+                return true;
+            }
+
+        }
+        return false;
+    }
 
     private static void cleanFile(String file){
         try {
@@ -257,6 +267,8 @@ public class Archivo {
         }
         return lines;
     }
+
+
 
 
 
